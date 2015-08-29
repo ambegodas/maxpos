@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd"
+        >
+        
+
+   <context:component-scan base-package="com.ambegodas.maxpos.daoimpl"></context:component-scan>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="username" value="sa"></property>
+		<property name="password" value="sa"></property>
+		<property name="url" value="jdbc:h2:mem:test"></property>
+		<property name="driverClassName" value="org.h2.Driver"></property>
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		<property name="jpaProperties">
+			<map>
+				<entry key="hibernate.hbm2ddl.auto" value="create-drop"></entry>
+				<entry key="hibernate.show_sql" value="true"></entry>
+			</map>
+		</property>
+		<property name="packagesToScan" value="com.ambegodas.maxpos.model"></property>
+	</bean>
+        
+     <tx:annotation-driven/>    
+     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"></bean>
+     <context:component-scan base-package="com.ambegodas.maxpos.service.impl"></context:component-scan>
+ </beans>
