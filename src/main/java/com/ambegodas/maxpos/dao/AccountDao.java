@@ -1,9 +1,17 @@
 package com.ambegodas.maxpos.dao;
 
+import com.ambegodas.maxpos.model.Account;
+
+import java.util.List;
+
 /**
  * Created by pathmasri on 9/4/15.
  */
-public class AccountDao {
+public interface AccountDao {
 
-    pub
+    public Account getAccount(String userName);
+    public Account editAccount(Account Account);
+    public void deleteAccount(Account Account);
+    public Account addAccount(Account Account);
+    public List<Account> getAccounts();
 }

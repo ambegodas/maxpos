@@ -3,6 +3,7 @@ package com.ambegodas.maxpos.daoimpl;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.ambegodas.maxpos.dao.ProductDao;
 import org.springframework.stereotype.Repository;
 
 import com.ambegodas.maxpos.model.Product;

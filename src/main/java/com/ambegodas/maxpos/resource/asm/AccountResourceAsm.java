@@ -3,6 +3,8 @@ package com.ambegodas.maxpos.resource.asm;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
+import org.springframework.hateoas.Link;
+
 import com.ambegodas.maxpos.controller.AccountController;
 import com.ambegodas.maxpos.controller.AccountController;
 import com.ambegodas.maxpos.model.Account;
@@ -26,7 +28,8 @@ public class AccountResourceAsm extends ResourceAssemblerSupport<Account,Account
         accountResource.setUserName(account.getUserName());
         accountResource.setPassword(account.getPassword());
         
-        Link link = linkTo(methodOn(AccountController.class))
-        return null;
+        Link link = linkTo(methodOn(AccountController.class).getAccount(account.getUserName())).withSelfRel();
+        accountResource.add(link);
+        return accountResource;
     }
 }
