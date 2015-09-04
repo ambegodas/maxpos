@@ -26,7 +26,7 @@ public class ProductResourceAsm extends ResourceAssemblerSupport<Product, Produc
 		productResource.setPrice(product.getPrice());
 		productResource.setProductId(product.getProductId());
 		Link link = linkTo(methodOn(ProductController.class).getProduct(product.getProductId())).withSelfRel();
-		productResource.add(link.withSelfRel());
+		productResource.add(link);
 		return productResource;
 	}
 	

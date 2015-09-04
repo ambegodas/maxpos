@@ -5,7 +5,6 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import com.ambegodas.maxpos.dao.ProductDao;
 import com.ambegodas.maxpos.model.Product;
 
 /**
