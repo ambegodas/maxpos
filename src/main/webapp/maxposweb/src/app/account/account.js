@@ -27,12 +27,24 @@ angular.module('ngBoilerplate.account',['ui.router','ngResource'])
         });
 
     })
-    .factory("sessionService",function(){
+    .factory("sessionService",function($http){
 
         var session = {};
+
         session.login = function(data){
-            alert("User: "+ data.userName + "Pass: " + data.password);
-            localStorage.setItem("session",data);
+
+            return $http.post("/maxpos/login","username=" +data.userName +"&password="+ data.password,{
+
+                 headers:{'content-Type' : 'application/x-www-form-urlencoded'}
+            }).then(function(data){
+                alert("User: "+ data.userName + "Pass: " + data.password);
+                localStorage.setItem("session",{});
+            },function(data){
+                alert("Error login");
+            });
+
+
+
         } ;
 
         session.logout = function (data){
@@ -54,15 +66,40 @@ angular.module('ngBoilerplate.account',['ui.router','ngResource'])
 
         } ;
 
+        service.userExists = function(account,success,failure){
+            var Account = $resource("/maxpos/accounts");
+            var data = Account.get({name:account.name}, function(){
+
+                var accounts = data.accountsList;
+                if(accounts.length !==0){
+                    success(accounts[0]);
+                } else {
+                    failure();
+                }
+
+                success(data);
+            }, failure);
+
+        };
+
+
         return service;
 
+
     })
-    .controller('LoginCtrl', function( $scope, sessionService, $state){
+    .controller('LoginCtrl', function( $scope, sessionService,accountService,$state){
 
         $scope.login = function(){
 
-            sessionService.login($scope.account);
-            $state.go("home");
+            accountService.userExists($scope,function(account){
+                sessionService.login(account).then(function(){
+                    $state.go("home");
+                });
+
+            },function(){
+                alert("Error login in user");
+            });
+
 
             //alert("User: "+ $scope.account.username + "Pass: " + $scope.account.password);
         };
@@ -71,19 +108,15 @@ angular.module('ngBoilerplate.account',['ui.router','ngResource'])
         $scope.register = function(){
 
             accountService.register($scope.account,
+
                 function(returnedDate){
-                    sessionService.login(returnedDate);
-                    $state.go("home");
+                    sessionService.login($scope.account).then(function(){
+                        $state.go("home");
+                    });
             },
             function(){
                 alert("Error registering user");
             });
-
-
-            sessionService.login($scope.account);
-            $state.go("home");
-
-            //alert("User: "+ $scope.account.username + "Pass: " + $scope.account.password);
         };
     })
 

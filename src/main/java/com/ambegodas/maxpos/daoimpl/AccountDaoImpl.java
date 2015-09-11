@@ -24,6 +24,9 @@ public class AccountDaoImpl implements AccountDao {
 
         String query = "select a from Account a where a.userName=" + " :userName";
         Account account = (Account)em.createQuery(query).setParameter("userName",userName).getSingleResult();
+     //   Account account = new Account();
+     //   account.setUserName("pathmasri");
+     //   account.setPassword("pass");
         return account;
     }
 

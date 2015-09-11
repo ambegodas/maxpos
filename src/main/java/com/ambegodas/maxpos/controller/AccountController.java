@@ -28,11 +28,18 @@ public class AccountController {
     private AccountService accountService;
 
      @RequestMapping(value="/accounts", method = RequestMethod.POST)
-    public @ResponseBody Account  addAccount(@RequestBody Account account){
+    public ResponseEntity<AccountResource>  addAccount(@RequestBody Account account){
          System.out.println(account.getUserName());
          System.out.println(account.getPassword());
          accountService.addAccount(account);
-        return account;
+
+         if(account != null){
+             AccountResource res = new AccountResourceAsm().toResource(account);
+             return new ResponseEntity<AccountResource>(res, HttpStatus.OK);
+         } else {
+             return new ResponseEntity<AccountResource>(HttpStatus.NOT_FOUND);
+         }
+
     }
 
     @RequestMapping(value="/accounts/{userName}", method = RequestMethod.GET)
