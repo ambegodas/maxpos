@@ -27,7 +27,7 @@ angular.module('ngBoilerplate.account',['ui.router','ngResource'])
         });
 
     })
-    .factory("sessionService",function($http){
+    .factory("sessionService",function($http, $window){
 
         var session = {};
 
@@ -47,8 +47,14 @@ angular.module('ngBoilerplate.account',['ui.router','ngResource'])
 
         } ;
 
-        session.logout = function (data){
-            localStorage.removeItem("session",data);
+        session.logout = function (){
+
+            $http.post('logout', {}).success(function() {
+                $window.location.href = "/maxpos/login";
+            }).error(function() {
+                $rootScope.authenticated = false;
+            });
+
         };
 
         session.isLoggedIn = function(){ return localStorage.getItem("session") != null ;} ;

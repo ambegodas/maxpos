@@ -31,6 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private LogoutSuccess logoutSuccess;
+
 
 
     @Autowired
@@ -46,19 +49,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+               http
+                       .csrf().disable()
+                .formLogin()
+                .successHandler(success)
+                .and()
+               // .logout().logoutSuccessHandler(logoutSuccess)
+               // .and()
+                .authorizeRequests()
+                .antMatchers("/**")
+                .authenticated();
+
+       /* http.csrf().disable()
                 .exceptionHandling()
-                   .authenticationEntryPoint(unauthorizedHandler)
+                .authenticationEntryPoint(unauthorizedHandler)
                 .and()
                 .formLogin()
-                    .failureHandler(failure)
-                     .successHandler(success)
+                .failureHandler(failure)
+                .successHandler(success)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/**")
-                .permitAll();
-
-
-
+                .authenticated();
+                **/
     }
 }

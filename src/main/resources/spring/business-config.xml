@@ -19,10 +19,12 @@
    <context:component-scan base-package="com.ambegodas.maxpos.daoimpl"></context:component-scan>
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="username" value="sa"></property>
-		<property name="password" value="sa"></property>
-		<property name="url" value="jdbc:h2:mem:test"></property>
-		<property name="driverClassName" value="org.h2.Driver"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="password1234"></property>
+		<!-- property name="url" value="jdbc:h2:mem:test"></property -->
+		<!-- property name="driverClassName" value="org.h2.Driver"></property -->
+		<property name="url" value="jdbc:mysql://localhost:3306/Maxpos"></property>
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 	</bean>
 
 	<bean id="entityManagerFactory"
@@ -33,7 +35,7 @@
 		</property>
 		<property name="jpaProperties">
 			<map>
-				<entry key="hibernate.hbm2ddl.auto" value="create-drop"></entry>
+				<entry key="hibernate.hbm2ddl.auto" value="update"></entry>
 				<entry key="hibernate.show_sql" value="true"></entry>
 			</map>
 		</property>
@@ -43,5 +45,5 @@
      <tx:annotation-driven/>    
      <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"></bean>
      <context:component-scan base-package="com.ambegodas.maxpos.service.impl"></context:component-scan>
-	<context:component-scan base-package="com.ambegodas.maxpos.security"></context:component-scan>
+	 <context:component-scan base-package="com.ambegodas.maxpos.security"></context:component-scan>
  </beans>

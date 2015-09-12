@@ -13,7 +13,7 @@
         
     <context:component-scan base-package="com.ambegodas.maxpos.controller"></context:component-scan>   
     
-    <mvc:resources location="/maxposweb/build/" mapping="/maxposweb/**" ></mvc:resources>
+    <mvc:resources location="/maxposweb/build/" mapping="/**" ></mvc:resources>
     
     <mvc:annotation-driven/>
     
