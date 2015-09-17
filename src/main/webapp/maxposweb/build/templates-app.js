@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'account/login.tpl.html', 'account/register.tpl.html', 'home/home.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'account/login.tpl.html', 'account/register.tpl.html', 'home/home.tpl.html', 'inventory/inventory.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -363,4 +363,18 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "</div>\n" +
     "\n" +
     "");
+}]);
+
+angular.module("inventory/inventory.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("inventory/inventory.tpl.html",
+    "<!DOCTYPE html>\n" +
+    "<html lang=\"en\">\n" +
+    "<head>\n" +
+    "    <meta charset=\"UTF-8\">\n" +
+    "    <title></title>\n" +
+    "</head>\n" +
+    "<body>\n" +
+    "  <h1>The inventory</h1>\n" +
+    "</body>\n" +
+    "</html>");
 }]);

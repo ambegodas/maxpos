@@ -50,7 +50,7 @@ angular.module('ngBoilerplate.account',['ui.router','ngResource'])
         session.logout = function (){
 
             $http.post('logout', {}).success(function() {
-                $window.location.href = "/maxpos/login?logout";
+                $window.location.href = "/maxpos/login";
             }).error(function() {
                 $rootScope.authenticated = false;
             });

@@ -5,7 +5,7 @@ angular.module( 'ngBoilerplate.about', [
 ])
 
 .config(function config( $stateProvider ) {
-  $stateProvider.state( 'about', {
+  $stateProvider.state( 'about1', {
     url: '/about',
     views: {
       "main": {
