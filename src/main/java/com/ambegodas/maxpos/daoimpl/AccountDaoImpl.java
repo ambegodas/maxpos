@@ -20,10 +20,10 @@ public class AccountDaoImpl implements AccountDao {
     @PersistenceContext
     private EntityManager em;
 
-    public Account getAccount(String userName) {
+    public Account getAccount(String username) {
 
-        String query = "select a from Account a where a.userName=" + " :userName";
-        Account account = (Account)em.createQuery(query).setParameter("userName",userName).getSingleResult();
+        String query = "select a from Account a where a.username=" + " :username";
+        Account account = (Account)em.createQuery(query).setParameter("username",username).getSingleResult();
      //   Account account = new Account();
      //   account.setUserName("pathmasri");
      //   account.setPassword("pass");

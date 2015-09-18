@@ -29,7 +29,7 @@ public class AccountController {
 
      @RequestMapping(value="/accounts", method = RequestMethod.POST)
     public ResponseEntity<AccountResource>  addAccount(@RequestBody Account account){
-         System.out.println(account.getUserName());
+         System.out.println(account.getUsername());
          System.out.println(account.getPassword());
          accountService.addAccount(account);
 
@@ -58,10 +58,11 @@ public class AccountController {
     }
 
     @RequestMapping(value="/accounts", method = RequestMethod.GET)
-    public  ResponseEntity<AccountListResource> getAccounts(){
+    public @ResponseBody  List<Account> getAccounts(){
 
+         return accountService.getAccounts().getAccountList();
 
-      AccountList accountList = accountService.getAccounts();
+    /*  AccountList accountList = accountService.getAccounts();
 
         if(accountList != null){
             AccountListResource res = new AccountListResourceAsm().toResource(accountList);
@@ -69,6 +70,7 @@ public class AccountController {
         } else {
             return new ResponseEntity<AccountListResource>(HttpStatus.NOT_FOUND);
         }
+        */
 
     }
 

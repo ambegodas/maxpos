@@ -7,7 +7,7 @@ var app = angular.module('maxpos.inventory',[
 app.config(function config($stateProvider){
 
     $stateProvider.state('inventory',{
-     url: '/inventory',
+     url: '/inventorytest',
         views: {
             "main":{
                 controller: 'InventoryCtrl',

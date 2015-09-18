@@ -3,7 +3,7 @@ angular.module( 'ngBoilerplate', [
   'templates-common',
   'ngBoilerplate.home',
   'ngBoilerplate.about',
-  'ngBoilerplate.account',
+  'maxpos.account',
   'maxpos.inventory',
   'ui.router'
 ])

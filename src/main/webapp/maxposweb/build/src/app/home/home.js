@@ -15,7 +15,7 @@
 angular.module( 'ngBoilerplate.home', [
   'ui.router',
   'plusOne',
-  'ngBoilerplate.account'
+  'maxpos.account'
 ])
 
 /**

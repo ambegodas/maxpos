@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'account/login.tpl.html', 'account/register.tpl.html', 'home/home.tpl.html', 'inventory/inventory.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'account/account.tpl.html', 'account/createAccount.tpl.html', 'account/login.tpl.html', 'home/home.tpl.html', 'inventory/inventory.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -270,15 +270,114 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
     "");
 }]);
 
-angular.module("account/login.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("account/login.tpl.html",
+angular.module("account/account.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("account/account.tpl.html",
     "<div class=\"row\">\n" +
     "\n" +
-    "    <h1 class=\"page-header\">\n" +
-    "        Login\n" +
-    "    </h1>\n" +
+    "    <form action=\"\" class=\"form-inline\">\n" +
+    "        <div class=\"form-group\">\n" +
+    "            <label for=\"element-1\">Search</label>\n" +
+    "            <input type=\"text\" id=\"element-1\" class=\"form-control\">\n" +
+    "        </div>\n" +
     "\n" +
-    "    <form ng-submit=\"login()\">\n" +
+    "        <button class=\"btn btn-info btn-md\" ng-click=\"getAccounts()\"><span class=\"glyphicon glyphicon-search\"></span></button>\n" +
+    "\n" +
+    "    </form>\n" +
+    "</div>\n" +
+    "\n" +
+    " <hr>\n" +
+    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"container\">\n" +
+    "        <div class=\"panel panel-default\">\n" +
+    "\n" +
+    "            <div class=\"panel-heading\">Accounts</div>\n" +
+    "\n" +
+    "            <table st-table=\"accounts\" class=\"table table-striped\">\n" +
+    "                <thead>\n" +
+    "                <tr>\n" +
+    "                    <th>Username</th>\n" +
+    "                    <th>First name</th>\n" +
+    "                    <th>Last name</th>\n" +
+    "                    <th>Email</th>\n" +
+    "                    <th>Mobile</th>\n" +
+    "                    <th>Data of Join</th>\n" +
+    "                    <th>Data of birth</th>\n" +
+    "                </tr>\n" +
+    "                </thead>\n" +
+    "                <tbody>\n" +
+    "                <tr ng-repeat=\"account in accounts\">\n" +
+    "                    <td>{{account.username}}</td>\n" +
+    "                    <td>{{account.firstName}}</td>\n" +
+    "                    <td>{{account.lastName}}</td>\n" +
+    "                    <td>{{account.email}}</td>\n" +
+    "                    <td>{{account.mobile}}</td>\n" +
+    "                    <td>{{account.dateOfJoin}}</td>\n" +
+    "                    <td>{{account.dateOfBirth}}</td>\n" +
+    "                </tr>\n" +
+    "                </tbody>\n" +
+    "            </table>\n" +
+    "\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<hr>\n" +
+    "\n" +
+    "<div class=\"row\">\n" +
+    "    <button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#add-user-modal\" >Add Account</button>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"modal fade\" id=\"add-user-modal\">\n" +
+    "    <div class=\"modal-dialog modal-md\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "            <div class=\"modal-header\">\n" +
+    "                <button class=\"close\" type=\"button\" data-dismiss=\"modal\">&times;</button>\n" +
+    "                <h3 class=\"modal-title\">Create Account</h3>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"modal-body\">\n" +
+    "\n" +
+    "                <div class=\"row\">\n" +
+    "\n" +
+    "                    <form  ng-submit=\"register()\" class=\"form-horizontal\">\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"username\" class=\"col-xs-3 control-label\">Username</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"username\" class=\"form-control\" placeholder=\"Username\" ng-model=\"account.userName\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"password\" class=\"col-xs-3 control-label\">Password</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"password\" id=\"password\" class=\"form-control\" placeholder=\"Password\" ng-model=\"account.password\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <div class=\"col-xs-5 col-xs-offset-3\">\n" +
+    "                                <button class=\"btn btn-primary\" type=\"submit\">Create</button>\n" +
+    "                                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "\n" +
+    "                    </form>\n" +
+    "\n" +
+    "                </div>\n" +
+    "\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
+angular.module("account/createAccount.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("account/createAccount.tpl.html",
+    "<div class=\"row\">\n" +
+    "\n" +
+    "    <form ng-submit=\"register()\">\n" +
     "\n" +
     "        <div class=\"form-group\">\n" +
     "            <label>Username:</label>\n" +
@@ -288,21 +387,21 @@ angular.module("account/login.tpl.html", []).run(["$templateCache", function($te
     "            <label>Password:</label>\n" +
     "            <input type=\"password\" class=\"form-control\" ng-model=\"account.password\">\n" +
     "        </div>\n" +
-    "        <button class=\"btn btn-sucssess\" type=\"submit\">Login</button>\n" +
+    "        <button class=\"btn btn-sucssess\" type=\"submit\">Create</button>\n" +
     "    </form>\n" +
     "\n" +
     "</div>");
 }]);
 
-angular.module("account/register.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("account/register.tpl.html",
+angular.module("account/login.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("account/login.tpl.html",
     "<div class=\"row\">\n" +
     "\n" +
     "    <h1 class=\"page-header\">\n" +
     "        Login\n" +
     "    </h1>\n" +
     "\n" +
-    "    <form ng-submit=\"register()\">\n" +
+    "    <form ng-submit=\"login()\">\n" +
     "\n" +
     "        <div class=\"form-group\">\n" +
     "            <label>Username:</label>\n" +

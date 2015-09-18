@@ -1,4 +1,4 @@
-angular.module('ngBoilerplate.account',['ui.router','ngResource'])
+angular.module('maxpos.account',['ui.router','ngResource','smart-table'])
     .config(function($stateProvider){
         $stateProvider.state('login',{
             url:'/login',
@@ -14,12 +14,12 @@ angular.module('ngBoilerplate.account',['ui.router','ngResource'])
 
     })
     .config(function($stateProvider){
-        $stateProvider.state('register',{
-            url:'/register',
+        $stateProvider.state('accounts',{
+            url:'/accounts',
             views:{
                 'main':{
-                    templateUrl:'account/register.tpl.html',
-                    controller: 'RegisterCtrl'
+                    templateUrl:'account/account.tpl.html',
+                    controller: 'AccountCtrl'
                 }
             },
             data:{pateTitle:'Register'}
@@ -42,8 +42,6 @@ angular.module('ngBoilerplate.account',['ui.router','ngResource'])
             },function(data){
                 alert("Error login");
             });
-
-
 
         } ;
 
@@ -88,10 +86,16 @@ angular.module('ngBoilerplate.account',['ui.router','ngResource'])
 
         };
 
+        service.getAccounts = function(success,failiure){
+            var Account = $resource("/maxpos/accounts");
+            Account.query(function(data){
+                success(data);
+            },function(){
+                failiure();
+            });
+        }
 
         return service;
-
-
     })
     .controller('LoginCtrl', function( $scope, sessionService,accountService,$state){
 
@@ -105,25 +109,31 @@ angular.module('ngBoilerplate.account',['ui.router','ngResource'])
             },function(){
                 alert("Error login in user");
             });
-
-
-            //alert("User: "+ $scope.account.username + "Pass: " + $scope.account.password);
         };
-    }).controller('RegisterCtrl', function( $scope, sessionService, $state, accountService){
+    }).controller('AccountCtrl', function( $scope, sessionService, $state, accountService,$resource){
 
         $scope.register = function(){
 
             accountService.register($scope.account,
 
                 function(returnedDate){
-                    sessionService.login($scope.account).then(function(){
-                        $state.go("home");
-                    });
+                    alert("Account created successfully");
+                    $("#add-user-modal").modal("hide");
             },
             function(){
                 alert("Error registering user");
             });
         };
+
+        $scope.getAccounts = function(){
+            accountService.getAccounts(function(data){
+                $scope.accounts = data;
+                alert("success");
+            }, function(){
+                alert("Error");
+            });
+        }
+
     })
 
 ;
