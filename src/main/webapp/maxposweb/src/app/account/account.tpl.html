@@ -51,12 +51,18 @@
                     <td>{{account.mobile}}</td>
                     <td>{{account.dateOfJoin | date}}</td>
                     <td>{{account.dateOfBirth | date}}</td>
+                    <td>
+                        <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-info" data-toggle="modal" data-target="#add-user-modal" >
+                            <i class="glyphicon glyphicon-edit">
+                            </i>
+                        </button>
+                    </td>
                 </tr>
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td colspan="7" class="text-center">
-                        <div st-pagination="" st-items-by-page="4" st-displayed-pages="5"></div>
+                    <td colspan="8" class="text-center">
+                        <div st-pagination="" st-items-by-page="4" st-displayed-pages="7"></div>
                     </td>
                 </tr>
                 </tfoot>
@@ -68,6 +74,102 @@
 
 
 <div class="modal fade" id="add-user-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">Create Account</h3>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <form  ng-submit="register()" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="username" class="col-xs-3 control-label">Username</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="username" class="form-control" placeholder="Username" ng-model="account.username">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="firstName" class="col-xs-3 control-label">First Name</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="firstName" class="form-control" placeholder="First Name" ng-model="account.firstName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName" class="col-xs-3 control-label">Last Name</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="lastName" class="form-control" placeholder="Last Name" ng-model="account.lastName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateOfJoin" class="col-xs-3 control-label">Date of join</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="dateOfJoin" class="form-control" datepicker-popup="{{format}}" ng-model="account.dateOfJoin" is-open="true" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="dateOfBirth" class="col-xs-3 control-label">Date of birth</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="dateOfBirth" class="form-control" datepicker-popup="{{format}}" ng-model="account.dateOfBirth" is-open="true" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-xs-3 control-label">Email</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="email" class="form-control" placeholder="Email" ng-model="account.email">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="mobile" class="col-xs-3 control-label">Mobile</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="mobile" class="form-control" placeholder="Mobile" ng-model="account.mobile">
+                            </div>
+                        </div>
+
+                        <!--div class="form-group">
+                            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="account.dateOfBirth" is-open="true" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)">
+                                 <i class="glyphicon glyphicon-calendar"></i></button>
+                             </span>
+                        </div -->
+
+                        <div class="form-group">
+                            <label for="password" class="col-xs-3 control-label">Password</label>
+                            <div class="col-xs-5">
+                                <input type="password" id="password" class="form-control" placeholder="Password" ng-model="account.password">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-5 col-xs-offset-3">
+                                <button class="btn btn-primary" type="submit">Create</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modify-user-modal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">

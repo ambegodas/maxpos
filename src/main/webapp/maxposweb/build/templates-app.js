@@ -325,12 +325,18 @@ angular.module("account/account.tpl.html", []).run(["$templateCache", function($
     "                    <td>{{account.mobile}}</td>\n" +
     "                    <td>{{account.dateOfJoin | date}}</td>\n" +
     "                    <td>{{account.dateOfBirth | date}}</td>\n" +
+    "                    <td>\n" +
+    "                        <button type=\"button\" ng-click=\"removeItem(row)\" class=\"btn btn-sm btn-info\" data-toggle=\"modal\" data-target=\"#add-user-modal\" >\n" +
+    "                            <i class=\"glyphicon glyphicon-edit\">\n" +
+    "                            </i>\n" +
+    "                        </button>\n" +
+    "                    </td>\n" +
     "                </tr>\n" +
     "                </tbody>\n" +
     "                <tfoot>\n" +
     "                <tr>\n" +
-    "                    <td colspan=\"7\" class=\"text-center\">\n" +
-    "                        <div st-pagination=\"\" st-items-by-page=\"4\" st-displayed-pages=\"5\"></div>\n" +
+    "                    <td colspan=\"8\" class=\"text-center\">\n" +
+    "                        <div st-pagination=\"\" st-items-by-page=\"4\" st-displayed-pages=\"7\"></div>\n" +
     "                    </td>\n" +
     "                </tr>\n" +
     "                </tfoot>\n" +
@@ -342,6 +348,102 @@ angular.module("account/account.tpl.html", []).run(["$templateCache", function($
     "\n" +
     "\n" +
     "<div class=\"modal fade\" id=\"add-user-modal\">\n" +
+    "    <div class=\"modal-dialog modal-lg\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "            <div class=\"modal-header\">\n" +
+    "                <button class=\"close\" type=\"button\" data-dismiss=\"modal\">&times;</button>\n" +
+    "                <h3 class=\"modal-title\">Create Account</h3>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"modal-body\">\n" +
+    "\n" +
+    "                <div class=\"row\">\n" +
+    "\n" +
+    "                    <form  ng-submit=\"register()\" class=\"form-horizontal\">\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"username\" class=\"col-xs-3 control-label\">Username</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"username\" class=\"form-control\" placeholder=\"Username\" ng-model=\"account.username\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"firstName\" class=\"col-xs-3 control-label\">First Name</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"firstName\" class=\"form-control\" placeholder=\"First Name\" ng-model=\"account.firstName\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"lastName\" class=\"col-xs-3 control-label\">Last Name</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"lastName\" class=\"form-control\" placeholder=\"Last Name\" ng-model=\"account.lastName\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"dateOfJoin\" class=\"col-xs-3 control-label\">Date of join</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"dateOfJoin\" class=\"form-control\" datepicker-popup=\"{{format}}\" ng-model=\"account.dateOfJoin\" is-open=\"true\" min-date=\"minDate\" max-date=\"maxDate\" datepicker-options=\"dateOptions\" date-disabled=\"disabled(date, mode)\" ng-required=\"true\" close-text=\"Close\"/>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"dateOfBirth\" class=\"col-xs-3 control-label\">Date of birth</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"dateOfBirth\" class=\"form-control\" datepicker-popup=\"{{format}}\" ng-model=\"account.dateOfBirth\" is-open=\"true\" min-date=\"minDate\" max-date=\"maxDate\" datepicker-options=\"dateOptions\" date-disabled=\"disabled(date, mode)\" ng-required=\"true\" close-text=\"Close\"/>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"email\" class=\"col-xs-3 control-label\">Email</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"email\" class=\"form-control\" placeholder=\"Email\" ng-model=\"account.email\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"mobile\" class=\"col-xs-3 control-label\">Mobile</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"mobile\" class=\"form-control\" placeholder=\"Mobile\" ng-model=\"account.mobile\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!--div class=\"form-group\">\n" +
+    "                            <input type=\"text\" class=\"form-control\" datepicker-popup=\"{{format}}\" ng-model=\"account.dateOfBirth\" is-open=\"true\" min-date=\"minDate\" max-date=\"maxDate\" datepicker-options=\"dateOptions\" date-disabled=\"disabled(date, mode)\" ng-required=\"true\" close-text=\"Close\"/>\n" +
+    "                            <span class=\"input-group-btn\">\n" +
+    "                                <button type=\"button\" class=\"btn btn-default\" ng-click=\"open($event)\">\n" +
+    "                                 <i class=\"glyphicon glyphicon-calendar\"></i></button>\n" +
+    "                             </span>\n" +
+    "                        </div -->\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"password\" class=\"col-xs-3 control-label\">Password</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"password\" id=\"password\" class=\"form-control\" placeholder=\"Password\" ng-model=\"account.password\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <div class=\"col-xs-5 col-xs-offset-3\">\n" +
+    "                                <button class=\"btn btn-primary\" type=\"submit\">Create</button>\n" +
+    "                                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "\n" +
+    "                    </form>\n" +
+    "\n" +
+    "                </div>\n" +
+    "\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"modal fade\" id=\"modify-user-modal\">\n" +
     "    <div class=\"modal-dialog modal-lg\">\n" +
     "        <div class=\"modal-content\">\n" +
     "            <div class=\"modal-header\">\n" +

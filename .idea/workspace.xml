@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34fe404d-f48f-4b14-b72d-413d99e25b83" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ambegodas/maxpos/model/Account.java" afterPath="$PROJECT_DIR$/src/main/java/com/ambegodas/maxpos/model/Account.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ambegodas/maxpos/resource/AccountResource.java" afterPath="$PROJECT_DIR$/src/main/java/com/ambegodas/maxpos/resource/AccountResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ambegodas/maxpos/resource/asm/AccountResourceAsm.java" afterPath="$PROJECT_DIR$/src/main/java/com/ambegodas/maxpos/resource/asm/AccountResourceAsm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/maxposweb/build/src/app/account/account.js" afterPath="$PROJECT_DIR$/src/main/webapp/maxposweb/build/src/app/account/account.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/maxposweb/src/app/account/account.js" afterPath="$PROJECT_DIR$/src/main/webapp/maxposweb/src/app/account/account.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/maxposweb/src/app/account/account.tpl.html" afterPath="$PROJECT_DIR$/src/main/webapp/maxposweb/src/app/account/account.tpl.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/maxposweb/bower.json" afterPath="$PROJECT_DIR$/src/main/webapp/maxposweb/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/maxposweb/build/index.html" afterPath="$PROJECT_DIR$/src/main/webapp/maxposweb/build/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/maxposweb/src/index.html" afterPath="$PROJECT_DIR$/src/main/webapp/maxposweb/src/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/maxposweb/build/templates-app.js" afterPath="$PROJECT_DIR$/src/main/webapp/maxposweb/build/templates-app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -58,8 +50,18 @@
       <file leaf-file-name="account.tpl.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/maxposweb/src/app/account/account.tpl.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6104651">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state vertical-scroll-proportion="1.875">
+              <caret line="91" column="63" selection-start-line="91" selection-start-column="63" selection-end-line="91" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="about.tpl.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/maxposweb/src/app/about/about.tpl.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.5833334">
+              <caret line="249" column="6" selection-start-line="249" selection-start-column="6" selection-end-line="249" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -1178,12 +1180,12 @@
       <workItem from="1442453113703" duration="7446000" />
       <workItem from="1442504007520" duration="1811000" />
       <workItem from="1442553050347" duration="34750000" />
-      <workItem from="1442632249876" duration="26605000" />
+      <workItem from="1442632249876" duration="29133000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="230497000" />
+    <option name="totallyTimeSpent" value="233025000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="720" extended-state="0" />
@@ -1372,13 +1374,6 @@
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/maxposweb/src/app/about/about.tpl.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="249" column="6" selection-start-line="249" selection-start-column="6" selection-end-line="249" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -1652,10 +1647,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/maxposweb/src/app/about/about.tpl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.5833334">
+          <caret line="249" column="6" selection-start-line="249" selection-start-column="6" selection-end-line="249" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/maxposweb/src/app/account/account.tpl.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6104651">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state vertical-scroll-proportion="1.875">
+          <caret line="91" column="63" selection-start-line="91" selection-start-column="63" selection-end-line="91" selection-end-column="63" />
           <folding />
         </state>
       </provider>
