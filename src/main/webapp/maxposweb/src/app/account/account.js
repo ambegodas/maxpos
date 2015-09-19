@@ -1,4 +1,4 @@
-angular.module('maxpos.account',['ui.router','ngResource','smart-table'])
+angular.module('maxpos.account',['ui.router','ngResource','smart-table','ui.bootstrap'])
     .config(function($stateProvider){
         $stateProvider.state('login',{
             url:'/login',
@@ -93,7 +93,7 @@ angular.module('maxpos.account',['ui.router','ngResource','smart-table'])
             },function(){
                 failiure();
             });
-        }
+        };
 
         return service;
     })
@@ -114,6 +114,8 @@ angular.module('maxpos.account',['ui.router','ngResource','smart-table'])
 
         $scope.register = function(){
 
+
+
             accountService.register($scope.account,
 
                 function(returnedDate){
@@ -128,11 +130,15 @@ angular.module('maxpos.account',['ui.router','ngResource','smart-table'])
         $scope.getAccounts = function(){
             accountService.getAccounts(function(data){
                 $scope.accounts = data;
-                alert("success");
             }, function(){
-                alert("Error");
+                alert("Error occured while retreiving users ");
             });
-        }
+        };
+
+        $scope.dateOptions = {
+            'year-format': "'yy'",
+            'starting-day': 1
+        };
 
     })
 

@@ -1,4 +1,4 @@
-angular.module('maxpos.account',['ui.router','ngResource','smart-table'])
+angular.module('maxpos.account',['ui.router','ngResource','smart-table','ui.bootstrap'])
     .config(function($stateProvider){
         $stateProvider.state('login',{
             url:'/login',
@@ -93,7 +93,7 @@ angular.module('maxpos.account',['ui.router','ngResource','smart-table'])
             },function(){
                 failiure();
             });
-        }
+        };
 
         return service;
     })
@@ -114,6 +114,8 @@ angular.module('maxpos.account',['ui.router','ngResource','smart-table'])
 
         $scope.register = function(){
 
+
+
             accountService.register($scope.account,
 
                 function(returnedDate){
@@ -128,34 +130,15 @@ angular.module('maxpos.account',['ui.router','ngResource','smart-table'])
         $scope.getAccounts = function(){
             accountService.getAccounts(function(data){
                 $scope.accounts = data;
-                alert("success");
             }, function(){
-                alert("Error");
+                alert("Error occured while retreiving users ");
             });
-        }
+        };
 
-        $scope.rowCollection = [
-            { lastname: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            { lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
-            {firstName: 'Blandine', lastName: 'Faivre', birthDate: new Date('1987-04-25'), balance: -2323.22, email: 'oufblandou@gmail.com'},
-            {firstName: 'Francoise', lastName: 'Frere', birthDate: new Date('1955-08-27'), balance: 42343, email: 'raymondef@gmail.com'}
-        ];
-
-
+        $scope.dateOptions = {
+            'year-format': "'yy'",
+            'starting-day': 1
+        };
 
     })
 

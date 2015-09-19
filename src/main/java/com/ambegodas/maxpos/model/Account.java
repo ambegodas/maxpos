@@ -18,7 +18,7 @@ public class Account {
     private String lastName;
     private String username;
     private String password;
-    private Date datOfBirth;
+    private Date dateOfBirth;
     private Date dateOfJoin;
     private String mobile;
     private String email;
@@ -40,12 +40,12 @@ public class Account {
         this.lastName = lastName;
     }
 
-    public Date getDatOfBirth() {
-        return datOfBirth;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDatOfBirth(Date datOfBirth) {
-        this.datOfBirth = datOfBirth;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public Date getDateOfJoin() {
