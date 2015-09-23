@@ -1,12 +1,15 @@
 package com.ambegodas.maxpos.service.impl;
 
 import com.ambegodas.maxpos.dao.ProductDao;
+import com.ambegodas.maxpos.service.util.ProductList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ambegodas.maxpos.model.Product;
 import com.ambegodas.maxpos.service.ProductService;
+
+import java.util.List;
 
 /**
  * @author Pathmasri Ambegoda
@@ -23,8 +26,8 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.getProduct(productId);
 	}
 
-	public Product editProduct(Product product) {
-		return productDao.editProduct(product);
+	public Product updateProduct(Product product) {
+		return productDao.updateProduct(product);
 	}
 
 	public void deleteProduct(Product product) {
@@ -33,6 +36,14 @@ public class ProductServiceImpl implements ProductService {
 
 	public Product addProduct(Product product) {
 		return productDao.addProduct(product);
+	}
+
+	@Override
+	public ProductList getProducts() {
+		List<Product> accounts = productDao.getProducts();
+		ProductList productList = new ProductList();
+		productList.setProducts(accounts);
+		return productList ;
 	}
 
 }

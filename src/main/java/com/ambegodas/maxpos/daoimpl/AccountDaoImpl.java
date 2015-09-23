@@ -31,7 +31,7 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     public Account editAccount(Account account) {
-        em.persist(account);
+        em.merge(account);
         return account;
     }
 

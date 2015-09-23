@@ -282,7 +282,7 @@ angular.module("account/account.tpl.html", []).run(["$templateCache", function($
     "\n" +
     "        <button class=\"btn btn-info btn-md\" ng-click=\"getAccounts()\"><span class=\"glyphicon glyphicon-search\"></span></button>\n" +
     "\n" +
-    "        <button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#add-user-modal\" >Add Account</button>\n" +
+    "        <button class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#add-user-modal\" >Add Account</button>\n" +
     "\n" +
     "    </form>\n" +
     "</div>\n" +
@@ -326,7 +326,7 @@ angular.module("account/account.tpl.html", []).run(["$templateCache", function($
     "                    <td>{{account.dateOfJoin | date}}</td>\n" +
     "                    <td>{{account.dateOfBirth | date}}</td>\n" +
     "                    <td>\n" +
-    "                        <button type=\"button\" ng-click=\"removeItem(row)\" class=\"btn btn-sm btn-info\" data-toggle=\"modal\" data-target=\"#add-user-modal\" >\n" +
+    "                        <button type=\"button\" ng-click=\"openUpdateAgentModal(account)\" class=\"btn btn-sm btn-info\" data-toggle=\"modal\" data-target=\"#modify-user-modal\" >\n" +
     "                            <i class=\"glyphicon glyphicon-edit\">\n" +
     "                            </i>\n" +
     "                        </button>\n" +
@@ -448,14 +448,14 @@ angular.module("account/account.tpl.html", []).run(["$templateCache", function($
     "        <div class=\"modal-content\">\n" +
     "            <div class=\"modal-header\">\n" +
     "                <button class=\"close\" type=\"button\" data-dismiss=\"modal\">&times;</button>\n" +
-    "                <h3 class=\"modal-title\">Create Account</h3>\n" +
+    "                <h3 class=\"modal-title\">Update Account</h3>\n" +
     "            </div>\n" +
     "\n" +
     "            <div class=\"modal-body\">\n" +
     "\n" +
     "                <div class=\"row\">\n" +
     "\n" +
-    "                    <form  ng-submit=\"register()\" class=\"form-horizontal\">\n" +
+    "                    <form  ng-submit=\"modifyAccount(account)\" class=\"form-horizontal\">\n" +
     "                        <div class=\"form-group\">\n" +
     "                            <label for=\"username\" class=\"col-xs-3 control-label\">Username</label>\n" +
     "                            <div class=\"col-xs-5\">\n" +
@@ -524,7 +524,7 @@ angular.module("account/account.tpl.html", []).run(["$templateCache", function($
     "\n" +
     "                        <div class=\"form-group\">\n" +
     "                            <div class=\"col-xs-5 col-xs-offset-3\">\n" +
-    "                                <button class=\"btn btn-primary\" type=\"submit\">Create</button>\n" +
+    "                                <button class=\"btn btn-primary\" type=\"submit\">Update</button>\n" +
     "                                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
@@ -633,14 +633,257 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("inventory/inventory.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("inventory/inventory.tpl.html",
-    "<!DOCTYPE html>\n" +
-    "<html lang=\"en\">\n" +
-    "<head>\n" +
-    "    <meta charset=\"UTF-8\">\n" +
-    "    <title></title>\n" +
-    "</head>\n" +
-    "<body>\n" +
-    "  <h1>The inventory</h1>\n" +
-    "</body>\n" +
-    "</html>");
+    "<div class=\"row\">\n" +
+    "\n" +
+    "    <form action=\"\" class=\"form-inline\">\n" +
+    "        <div class=\"form-group\">\n" +
+    "            <label for=\"element-1\">Search</label>\n" +
+    "            <input type=\"text\" id=\"element-1\" class=\"form-control\">\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <button class=\"btn btn-info btn-md\" ng-click=\"getProducts()\"><span class=\"glyphicon glyphicon-search\"></span></button>\n" +
+    "\n" +
+    "        <button class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#add-product-modal\" >Add Product</button>\n" +
+    "\n" +
+    "    </form>\n" +
+    "</div>\n" +
+    "\n" +
+    "<hr>\n" +
+    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"container\">\n" +
+    "        <div class=\"panel panel-default\">\n" +
+    "\n" +
+    "            <div class=\"panel-heading\">Products</div>\n" +
+    "\n" +
+    "            <table st-table=\"displayedProducts\" st-safe-src=\"products\" class=\"table table-condensed\">\n" +
+    "                <thead>\n" +
+    "                <tr>\n" +
+    "                    <th>Product ID</th>\n" +
+    "                    <th>Product Name</th>\n" +
+    "                    <th>Description</th>\n" +
+    "                    <th>Price</th>\n" +
+    "                    <th>Measured In</th>\n" +
+    "                    <th>Available Qty</th>\n" +
+    "                    <th>Sold Qty</th>\n" +
+    "                    <th>Cost</th>\n" +
+    "                    <th>Added date</th>\n" +
+    "                </tr>\n" +
+    "\n" +
+    "                <tr>\n" +
+    "                    <th colspan=\"9\"><input st-search=\"\" class=\"form-control\" placeholder=\"Search...\" type=\"text\"/></th>\n" +
+    "                </tr>\n" +
+    "\n" +
+    "                </thead>\n" +
+    "                <tbody>\n" +
+    "                <tr ng-repeat=\"product in displayedProducts\">\n" +
+    "                    <td>{{product.productId}}</td>\n" +
+    "                    <td>{{product.productName | uppercase}}</td>\n" +
+    "                    <td>{{product.description}}</td>\n" +
+    "                    <td>{{product.measuredIn}}</td>\n" +
+    "                    <td>{{product.availableQty}}</td>\n" +
+    "                    <td>{{product.soldQty}}</td>\n" +
+    "                    <td>{{product.price}}</td>\n" +
+    "                    <td>{{product.cost}}</td>\n" +
+    "                    <td>{{product.addedDate | date}}</td>\n" +
+    "                    <td>\n" +
+    "                        <button type=\"button\" ng-click=\"openUpdateProductModal(product)\" class=\"btn btn-sm btn-info\" data-toggle=\"modal\" data-target=\"#update-product-modal\" >\n" +
+    "                            <i class=\"glyphicon glyphicon-edit\">\n" +
+    "                            </i>\n" +
+    "                        </button>\n" +
+    "                    </td>\n" +
+    "                </tr>\n" +
+    "                </tbody>\n" +
+    "                <tfoot>\n" +
+    "                <tr>\n" +
+    "                    <td colspan=\"9\" class=\"text-center\">\n" +
+    "                        <div st-pagination=\"\" st-items-by-page=\"4\" st-displayed-pages=\"7\"></div>\n" +
+    "                    </td>\n" +
+    "                </tr>\n" +
+    "                </tfoot>\n" +
+    "            </table>\n" +
+    "\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<!-- modal for adding products-->\n" +
+    "\n" +
+    "<div class=\"modal fade\" id=\"add-product-modal\">\n" +
+    "    <div class=\"modal-dialog modal-lg\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "            <div class=\"modal-header\">\n" +
+    "                <button class=\"close\" type=\"button\" data-dismiss=\"modal\">&times;</button>\n" +
+    "                <h3 class=\"modal-title\">Create Product</h3>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"modal-body\">\n" +
+    "\n" +
+    "                <div class=\"row\">\n" +
+    "\n" +
+    "                    <form  ng-submit=\"addProduct()\" class=\"form-horizontal\">\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"productName\" class=\"col-xs-3 control-label\">Product Name</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"productName\" class=\"form-control\" placeholder=\"Product Name\" ng-model=\"product.productName\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"description\" class=\"col-xs-3 control-label\">Description</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"description\" class=\"form-control\" placeholder=\"Description\" ng-model=\"product.description\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"measuredIn\" class=\"col-xs-3 control-label\">Measured In</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"measuredIn\" class=\"form-control\" placeholder=\"Measured In\" ng-model=\"product.measuredIn\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"addedDate\" class=\"col-xs-3 control-label\">Added Date</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"addedDate\" class=\"form-control\" datepicker-popup=\"{{format}}\" ng-model=\"product.addedDate\" is-open=\"true\" min-date=\"minDate\" max-date=\"maxDate\" datepicker-options=\"dateOptions\" date-disabled=\"disabled(date, mode)\" ng-required=\"true\" close-text=\"Close\"/>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"price\" class=\"col-xs-3 control-label\">Price</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"price\" class=\"form-control\" placeholder=\"Price\" ng-model=\"product.price\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"availableQty\" class=\"col-xs-3 control-label\">Available Qty</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"availableQty\" class=\"form-control\" placeholder=\"Available Qty\" ng-model=\"product.availableQty\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"cost\" class=\"col-xs-3 control-label\">Cost</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"cost\" class=\"form-control\" placeholder=\"Cost\" ng-model=\"product.cost\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "c\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <div class=\"col-xs-5 col-xs-offset-3\">\n" +
+    "                                <button class=\"btn btn-primary\" type=\"submit\" >Add</button>\n" +
+    "                                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                    </form>\n" +
+    "\n" +
+    "                </div>\n" +
+    "\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<!-- modal for modifying products-->\n" +
+    "\n" +
+    "<div class=\"modal fade\" id=\"update-product-modal\">\n" +
+    "    <div class=\"modal-dialog modal-lg\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "            <div class=\"modal-header\">\n" +
+    "                <button class=\"close\" type=\"button\" data-dismiss=\"modal\">&times;</button>\n" +
+    "                <h3 class=\"modal-title\">Update Product</h3>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"modal-body\">\n" +
+    "\n" +
+    "                <div class=\"row\">\n" +
+    "\n" +
+    "                    <form  ng-submit=\"updateProduct()\" class=\"form-horizontal\">\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"productId\" class=\"col-xs-3 control-label\">Product ID</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"productId\" class=\"form-control\" placeholder=\"Product ID\" ng-model=\"product.productId\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"productName\" class=\"col-xs-3 control-label\">Product Name</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"productName\" class=\"form-control\" placeholder=\"Product Name\" ng-model=\"product.productName\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"description\" class=\"col-xs-3 control-label\">Description</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"description\" class=\"form-control\" placeholder=\"Description\" ng-model=\"product.description\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"measuredIn\" class=\"col-xs-3 control-label\">Measured In</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"measuredIn\" class=\"form-control\" placeholder=\"Measured In\" ng-model=\"product.measuredIn\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"addedDate\" class=\"col-xs-3 control-label\">Added Date</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"addedDate\" class=\"form-control\" datepicker-popup=\"{{format}}\" ng-model=\"product.addedDate\" is-open=\"true\" min-date=\"minDate\" max-date=\"maxDate\" datepicker-options=\"dateOptions\" date-disabled=\"disabled(date, mode)\" ng-required=\"true\" close-text=\"Close\"/>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"price\" class=\"col-xs-3 control-label\">Price</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"price\" class=\"form-control\" placeholder=\"Price\" ng-model=\"product.price\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"availableQty\" class=\"col-xs-3 control-label\">Available Qty</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"availableQty\" class=\"form-control\" placeholder=\"Available Qty\" ng-model=\"product.availableQty\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"soldQty\" class=\"col-xs-3 control-label\">Sold Qty</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"soldQty\" class=\"form-control\" placeholder=\"Sold Qty\" ng-model=\"product.soldQty\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <label for=\"cost\" class=\"col-xs-3 control-label\">Cost</label>\n" +
+    "                            <div class=\"col-xs-5\">\n" +
+    "                                <input type=\"text\" id=\"cost\" class=\"form-control\" placeholder=\"Cost\" ng-model=\"product.cost\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <div class=\"col-xs-5 col-xs-offset-3\">\n" +
+    "                                <button class=\"btn btn-primary\" type=\"submit\">Update</button>\n" +
+    "                                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                    </form>\n" +
+    "\n" +
+    "                </div>\n" +
+    "\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
 }]);

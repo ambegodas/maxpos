@@ -22,7 +22,7 @@ angular.module('maxpos.account',['ui.router','ngResource','smart-table','ui.boot
                     controller: 'AccountCtrl'
                 }
             },
-            data:{pateTitle:'Register'}
+            data:{pateTitle:'Accounts'}
 
         });
 
@@ -113,9 +113,6 @@ angular.module('maxpos.account',['ui.router','ngResource','smart-table','ui.boot
     }).controller('AccountCtrl', function( $scope, sessionService, $state, accountService,$resource){
 
         $scope.register = function(){
-
-
-
             accountService.register($scope.account,
 
                 function(returnedDate){
@@ -138,6 +135,21 @@ angular.module('maxpos.account',['ui.router','ngResource','smart-table','ui.boot
         $scope.dateOptions = {
             'year-format': "'yy'",
             'starting-day': 1
+        };
+
+        $scope.openUpdateAgentModal = function(account){
+           $scope.account = account;
+        };
+
+        $scope.modifyAccount = function (account) {
+
+            var Account = $resource("/maxpos/accounts",null,{'update': { method:'PUT' }});
+            Account.update({},account,function(){
+                alert("Account successfully update");
+                $("#modify-user-modal").modal("hide");
+            }, function(username){
+                alert("Account update failed");
+            });
         };
 
     })

@@ -1,10 +1,253 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-  <h1>The inventory</h1>
-</body>
-</html>
+<div class="row">
+
+    <form action="" class="form-inline">
+        <div class="form-group">
+            <label for="element-1">Search</label>
+            <input type="text" id="element-1" class="form-control">
+        </div>
+
+        <button class="btn btn-info btn-md" ng-click="getProducts()"><span class="glyphicon glyphicon-search"></span></button>
+
+        <button class="btn btn-info" data-toggle="modal" data-target="#add-product-modal" >Add Product</button>
+
+    </form>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="container">
+        <div class="panel panel-default">
+
+            <div class="panel-heading">Products</div>
+
+            <table st-table="displayedProducts" st-safe-src="products" class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Measured In</th>
+                    <th>Available Qty</th>
+                    <th>Sold Qty</th>
+                    <th>Cost</th>
+                    <th>Added date</th>
+                </tr>
+
+                <tr>
+                    <th colspan="9"><input st-search="" class="form-control" placeholder="Search..." type="text"/></th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr ng-repeat="product in displayedProducts">
+                    <td>{{product.productId}}</td>
+                    <td>{{product.productName | uppercase}}</td>
+                    <td>{{product.description}}</td>
+                    <td>{{product.measuredIn}}</td>
+                    <td>{{product.availableQty}}</td>
+                    <td>{{product.soldQty}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.cost}}</td>
+                    <td>{{product.addedDate | date}}</td>
+                    <td>
+                        <button type="button" ng-click="openUpdateProductModal(product)" class="btn btn-sm btn-info" data-toggle="modal" data-target="#update-product-modal" >
+                            <i class="glyphicon glyphicon-edit">
+                            </i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="9" class="text-center">
+                        <div st-pagination="" st-items-by-page="4" st-displayed-pages="7"></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!-- modal for adding products-->
+
+<div class="modal fade" id="add-product-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">Create Product</h3>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <form  ng-submit="addProduct()" class="form-horizontal">
+
+                        <div class="form-group">
+                            <label for="productName" class="col-xs-3 control-label">Product Name</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="productName" class="form-control" placeholder="Product Name" ng-model="product.productName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description" class="col-xs-3 control-label">Description</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="description" class="form-control" placeholder="Description" ng-model="product.description">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="measuredIn" class="col-xs-3 control-label">Measured In</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="measuredIn" class="form-control" placeholder="Measured In" ng-model="product.measuredIn">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="addedDate" class="col-xs-3 control-label">Added Date</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="addedDate" class="form-control" datepicker-popup="{{format}}" ng-model="product.addedDate" is-open="true" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price" class="col-xs-3 control-label">Price</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="price" class="form-control" placeholder="Price" ng-model="product.price">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="availableQty" class="col-xs-3 control-label">Available Qty</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="availableQty" class="form-control" placeholder="Available Qty" ng-model="product.availableQty">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cost" class="col-xs-3 control-label">Cost</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="cost" class="form-control" placeholder="Cost" ng-model="product.cost">
+                            </div>
+                        </div>
+c
+                        <div class="form-group">
+                            <div class="col-xs-5 col-xs-offset-3">
+                                <button class="btn btn-primary" type="submit" >Add</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal for modifying products-->
+
+<div class="modal fade" id="update-product-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">Update Product</h3>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <form  ng-submit="updateProduct()" class="form-horizontal">
+
+                        <div class="form-group">
+                            <label for="productId" class="col-xs-3 control-label">Product ID</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="productId" class="form-control" placeholder="Product ID" ng-model="product.productId">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productName" class="col-xs-3 control-label">Product Name</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="productName" class="form-control" placeholder="Product Name" ng-model="product.productName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description" class="col-xs-3 control-label">Description</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="description" class="form-control" placeholder="Description" ng-model="product.description">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="measuredIn" class="col-xs-3 control-label">Measured In</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="measuredIn" class="form-control" placeholder="Measured In" ng-model="product.measuredIn">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="addedDate" class="col-xs-3 control-label">Added Date</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="addedDate" class="form-control" datepicker-popup="{{format}}" ng-model="product.addedDate" is-open="true" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price" class="col-xs-3 control-label">Price</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="price" class="form-control" placeholder="Price" ng-model="product.price">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="availableQty" class="col-xs-3 control-label">Available Qty</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="availableQty" class="form-control" placeholder="Available Qty" ng-model="product.availableQty">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="soldQty" class="col-xs-3 control-label">Sold Qty</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="soldQty" class="form-control" placeholder="Sold Qty" ng-model="product.soldQty">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cost" class="col-xs-3 control-label">Cost</label>
+                            <div class="col-xs-5">
+                                <input type="text" id="cost" class="form-control" placeholder="Cost" ng-model="product.cost">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-5 col-xs-offset-3">
+                                <button class="btn btn-primary" type="submit">Update</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -42,6 +42,21 @@ public class AccountController {
 
     }
 
+    @RequestMapping(value="/accounts", method = RequestMethod.PUT)
+    public ResponseEntity<AccountResource>  updateAccount(@RequestBody Account account){
+       // System.out.println("Path variable captured: "+ username);
+
+        accountService.editAccount(account);
+
+        if(account != null){
+            AccountResource res = new AccountResourceAsm().toResource(account);
+            return new ResponseEntity<AccountResource>(res, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<AccountResource>(HttpStatus.NOT_FOUND);
+        }
+
+    }
+
     @RequestMapping(value="/accounts/{userName}", method = RequestMethod.GET)
     public  ResponseEntity<AccountResource> getAccount(@PathVariable String userName){
 
