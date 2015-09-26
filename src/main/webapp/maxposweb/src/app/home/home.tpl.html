@@ -1,42 +1,102 @@
-<div class="jumbotron">
+<div class="row">
+    <div class="col-sm-4">
+            <div class="panel panel-default panel-info">
 
+                <div class="panel-body">
+                <form action="" class="form-horizontal">
 
-  <ul class="list-inline social-buttons">
-    <li>
-      <iframe 
-        src="http://ghbtns.com/github-btn.html?user=ngbp&amp;repo=ngbp&amp;type=watch&amp;count=true" 
-        allowtransparency="true" 
-        frameborder="0" 
-        scrolling="0" 
-        width="110" 
-        height="20">
-      </iframe>
-    </li>
-    <li>
-      <iframe 
-        src="http://ghbtns.com/github-btn.html?user=ngbp&amp;repo=ngbp&amp;type=fork&amp;count=true" 
-        allowtransparency="true" 
-        frameborder="0" 
-        scrolling="0" 
-        width="95" 
-        height="20">
-      </iframe>
-    </li>
-    <li>
-       <iframe allowtransparency="true" frameborder="0" scrolling="no"
-        src="https://platform.twitter.com/widgets/tweet_button.html?url=http%3A%2F%2Fbit.ly%2FngBoilerplate&counturl=http%3A%2F%2Fngbp.github.com%2Fngbp&text=Check%20out%20%23ngbp%20-%20an%20awesome%20kickstarter%20for%20web%20projects%20%7C&hashtags=angularjs&via=joshdmiller&related=joshdmiller"
-        style="width:130px; height:20px;"></iframe>
-    </li>
-    <li plus-one></li>
-  </ul> 
+                    <div class="form-group">
+                        <label for="barCode" class="control-label col-sm-5">Bar Code</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="barCode" class="form-control">
+                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="productId" class="control-label col-sm-5">Product ID</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="productId" class="form-control" ng-model="product.productId">
+                        </div>
+                    </div>
 
-   <div class="btn-group">
-    <a ng-click="logout()" class="btn btn-large btn-success">
-      <i class="fa fa-download"></i>
-      Logout
-    </a>
-  </div>
+                    <div class="form-group">
+                        <label for="productName" class="control-label col-sm-5">Product Name</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="productName" class="form-control" ng-model="product.productName">
+                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="measuredIn" class="control-label col-sm-5">Measured In</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="measuredIn" class="form-control" ng-model="product.measuredIn">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="qty" class="control-label col-sm-5">Qty</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="qty" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-8 col-sm-offset-3">
+                            <button class="btn btn-primary" ng-click="loadProductData(product.productId)">Load</button>
+                            <button class="btn btn-primary" type="submit">Add</button>
+                            <button type="button" class="btn btn-default">Cancel</button>
+
+                        </div>
+                    </div>
+
+                </form>
+                </div>
+            </div>
+    </div>
+
+    <div class="col-sm-8	">
+            <div class="panel panel-default panel-info">
+
+                <table st-table="displayedProducts" st-safe-src="products" class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Measured In</th>
+                        <th>Qty</th>
+                    </tr>
+
+                    <tr>
+                        <th colspan="6"><input st-search="" class="form-control" placeholder="Search..." type="text"/></th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="product in displayedProducts">
+                        <td>{{product.productId}}</td>
+                        <td>{{product.productName | uppercase}}</td>
+                        <td>{{product.description}}</td>
+                        <td>{{product.measuredIn}}</td>
+                        <th>Qty</th>
+                        <td>{{product.price}}</td>
+                        <td>
+                            <button type="button" ng-click="openUpdateProductModal(product)" class="btn btn-sm btn-danger">
+                                <i class="glyphicon glyphicon-remove">
+                                </i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="9" class="text-center">
+                            <div st-pagination="" st-items-by-page="4" st-displayed-pages="7"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+    </div>
 </div>
-

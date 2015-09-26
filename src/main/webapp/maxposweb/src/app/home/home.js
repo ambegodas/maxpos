@@ -12,18 +12,19 @@
  * The dependencies block here is also where component dependencies should be
  * specified, as shown below.
  */
-angular.module( 'ngBoilerplate.home', [
+var homeApp = angular.module( 'ngBoilerplate.home', [
   'ui.router',
   'plusOne',
-  'maxpos.account'
-])
+  'maxpos.account',
+    ''
+]);
 
 /**
  * Each section or module of the site can also have its own routes. AngularJS
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider ) {
+homeApp.config(function config( $stateProvider ) {
   $stateProvider.state( 'home', {
     url: '/home',
     views: {
@@ -34,14 +35,36 @@ angular.module( 'ngBoilerplate.home', [
     },
     data:{ pageTitle: 'Home' }
   });
-})
+}) ;
+
+homeApp.factory('saleService',function($resource){
+
+  var service = {};
+
+  service.loadProductData = function(productId,success,failure){
+    var Product = $resource("/maxpos/products/:productId",{productId:'@productId'});
+    Product.query({productId:productId},success,failure);
+  };
+
+  return service;
+
+});
 
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope , sessionService) {
-      $scope.isLoggedIn  = sessionService.isLoggedIn;
-      $scope.logout = sessionService.logout;
-})
-;
+homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService) {
+
+   $scope.loadProductData = function(proudctID){
+
+     saleService.loadProductData(proudctID, function(data){
+       $scope.product = data;
+     },function(){
+       alert("Error while loading product data");
+     });
+
+   };
+
+
+});
 

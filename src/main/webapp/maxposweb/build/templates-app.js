@@ -586,48 +586,108 @@ angular.module("account/login.tpl.html", []).run(["$templateCache", function($te
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
-    "<div class=\"jumbotron\">\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-sm-4\">\n" +
+    "            <div class=\"panel panel-default panel-info\">\n" +
     "\n" +
+    "                <div class=\"panel-body\">\n" +
+    "                <form action=\"\" class=\"form-horizontal\">\n" +
     "\n" +
-    "  <ul class=\"list-inline social-buttons\">\n" +
-    "    <li>\n" +
-    "      <iframe \n" +
-    "        src=\"http://ghbtns.com/github-btn.html?user=ngbp&amp;repo=ngbp&amp;type=watch&amp;count=true\" \n" +
-    "        allowtransparency=\"true\" \n" +
-    "        frameborder=\"0\" \n" +
-    "        scrolling=\"0\" \n" +
-    "        width=\"110\" \n" +
-    "        height=\"20\">\n" +
-    "      </iframe>\n" +
-    "    </li>\n" +
-    "    <li>\n" +
-    "      <iframe \n" +
-    "        src=\"http://ghbtns.com/github-btn.html?user=ngbp&amp;repo=ngbp&amp;type=fork&amp;count=true\" \n" +
-    "        allowtransparency=\"true\" \n" +
-    "        frameborder=\"0\" \n" +
-    "        scrolling=\"0\" \n" +
-    "        width=\"95\" \n" +
-    "        height=\"20\">\n" +
-    "      </iframe>\n" +
-    "    </li>\n" +
-    "    <li>\n" +
-    "       <iframe allowtransparency=\"true\" frameborder=\"0\" scrolling=\"no\"\n" +
-    "        src=\"https://platform.twitter.com/widgets/tweet_button.html?url=http%3A%2F%2Fbit.ly%2FngBoilerplate&counturl=http%3A%2F%2Fngbp.github.com%2Fngbp&text=Check%20out%20%23ngbp%20-%20an%20awesome%20kickstarter%20for%20web%20projects%20%7C&hashtags=angularjs&via=joshdmiller&related=joshdmiller\"\n" +
-    "        style=\"width:130px; height:20px;\"></iframe>\n" +
-    "    </li>\n" +
-    "    <li plus-one></li>\n" +
-    "  </ul> \n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"barCode\" class=\"control-label col-sm-5\">Bar Code</label>\n" +
+    "                        <div class=\"col-sm-6\">\n" +
+    "                            <input type=\"text\" id=\"barCode\" class=\"form-control\">\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"productId\" class=\"control-label col-sm-5\">Product ID</label>\n" +
+    "                        <div class=\"col-sm-6\">\n" +
+    "                            <input type=\"text\" id=\"productId\" class=\"form-control\" ng-model=\"product.productId\">\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "\n" +
-    "   <div class=\"btn-group\">\n" +
-    "    <a ng-click=\"logout()\" class=\"btn btn-large btn-success\">\n" +
-    "      <i class=\"fa fa-download\"></i>\n" +
-    "      Logout\n" +
-    "    </a>\n" +
-    "  </div>\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"productName\" class=\"control-label col-sm-5\">Product Name</label>\n" +
+    "                        <div class=\"col-sm-6\">\n" +
+    "                            <input type=\"text\" id=\"productName\" class=\"form-control\" ng-model=\"product.productName\">\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"measuredIn\" class=\"control-label col-sm-5\">Measured In</label>\n" +
+    "                        <div class=\"col-sm-6\">\n" +
+    "                            <input type=\"text\" id=\"measuredIn\" class=\"form-control\" ng-model=\"product.measuredIn\">\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"qty\" class=\"control-label col-sm-5\">Qty</label>\n" +
+    "                        <div class=\"col-sm-6\">\n" +
+    "                            <input type=\"text\" id=\"qty\" class=\"form-control\">\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <div class=\"col-sm-8 col-sm-offset-3\">\n" +
+    "                            <button class=\"btn btn-primary\" ng-click=\"loadProductData(product.productId)\">Load</button>\n" +
+    "                            <button class=\"btn btn-primary\" type=\"submit\">Add</button>\n" +
+    "                            <button type=\"button\" class=\"btn btn-default\">Cancel</button>\n" +
+    "\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                </form>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"col-sm-8	\">\n" +
+    "            <div class=\"panel panel-default panel-info\">\n" +
+    "\n" +
+    "                <table st-table=\"displayedProducts\" st-safe-src=\"products\" class=\"table table-condensed\">\n" +
+    "                    <thead>\n" +
+    "                    <tr>\n" +
+    "                        <th>Product ID</th>\n" +
+    "                        <th>Product Name</th>\n" +
+    "                        <th>Description</th>\n" +
+    "                        <th>Price</th>\n" +
+    "                        <th>Measured In</th>\n" +
+    "                        <th>Qty</th>\n" +
+    "                    </tr>\n" +
+    "\n" +
+    "                    <tr>\n" +
+    "                        <th colspan=\"6\"><input st-search=\"\" class=\"form-control\" placeholder=\"Search...\" type=\"text\"/></th>\n" +
+    "                    </tr>\n" +
+    "\n" +
+    "                    </thead>\n" +
+    "                    <tbody>\n" +
+    "                    <tr ng-repeat=\"product in displayedProducts\">\n" +
+    "                        <td>{{product.productId}}</td>\n" +
+    "                        <td>{{product.productName | uppercase}}</td>\n" +
+    "                        <td>{{product.description}}</td>\n" +
+    "                        <td>{{product.measuredIn}}</td>\n" +
+    "                        <th>Qty</th>\n" +
+    "                        <td>{{product.price}}</td>\n" +
+    "                        <td>\n" +
+    "                            <button type=\"button\" ng-click=\"openUpdateProductModal(product)\" class=\"btn btn-sm btn-danger\">\n" +
+    "                                <i class=\"glyphicon glyphicon-remove\">\n" +
+    "                                </i>\n" +
+    "                            </button>\n" +
+    "                        </td>\n" +
+    "                    </tr>\n" +
+    "                    </tbody>\n" +
+    "                    <tfoot>\n" +
+    "                    <tr>\n" +
+    "                        <td colspan=\"9\" class=\"text-center\">\n" +
+    "                            <div st-pagination=\"\" st-items-by-page=\"4\" st-displayed-pages=\"7\"></div>\n" +
+    "                        </td>\n" +
+    "                    </tr>\n" +
+    "                    </tfoot>\n" +
+    "                </table>\n" +
+    "            </div>\n" +
+    "    </div>\n" +
     "</div>\n" +
-    "\n" +
     "");
 }]);
 
@@ -662,10 +722,10 @@ angular.module("inventory/inventory.tpl.html", []).run(["$templateCache", functi
     "                    <th>Product ID</th>\n" +
     "                    <th>Product Name</th>\n" +
     "                    <th>Description</th>\n" +
-    "                    <th>Price</th>\n" +
     "                    <th>Measured In</th>\n" +
     "                    <th>Available Qty</th>\n" +
     "                    <th>Sold Qty</th>\n" +
+    "                    <th>Price</th>\n" +
     "                    <th>Cost</th>\n" +
     "                    <th>Added date</th>\n" +
     "                </tr>\n" +

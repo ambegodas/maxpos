@@ -33,7 +33,7 @@ public class ProductController {
 	@RequestMapping(value="/products/{productId}", method=RequestMethod.GET)
 	public ResponseEntity<ProductResource> getProduct(@PathVariable int productId){
 	
-		Product product = new Product(1,"Thirds",2D);
+		Product product = productService.getProduct(productId);
 		
 		if(product != null){
 			ProductResource res = new ProductResourceAsm().toResource(product);
