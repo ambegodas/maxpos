@@ -631,7 +631,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                    <div class=\"form-group\">\n" +
     "                        <div class=\"col-sm-8 col-sm-offset-3\">\n" +
     "                            <button class=\"btn btn-primary\" ng-click=\"loadProductData(product.productId)\">Load</button>\n" +
-    "                            <button class=\"btn btn-primary\" type=\"submit\">Add</button>\n" +
+    "                            <button class=\"btn btn-primary\" ng-click=\"addProduct()\">Add</button>\n" +
     "                            <button type=\"button\" class=\"btn btn-default\">Cancel</button>\n" +
     "\n" +
     "                        </div>\n" +
@@ -662,7 +662,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "                    </thead>\n" +
     "                    <tbody>\n" +
-    "                    <tr ng-repeat=\"product in displayedProducts\">\n" +
+    "                    <tr ng-repeat=\"product in displayedProducts track by $index\">\n" +
     "                        <td>{{product.productId}}</td>\n" +
     "                        <td>{{product.productName | uppercase}}</td>\n" +
     "                        <td>{{product.description}}</td>\n" +

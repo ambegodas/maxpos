@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <div class="col-sm-8 col-sm-offset-3">
                             <button class="btn btn-primary" ng-click="loadProductData(product.productId)">Load</button>
-                            <button class="btn btn-primary" type="submit">Add</button>
+                            <button class="btn btn-primary" ng-click="addProduct()">Add</button>
                             <button type="button" class="btn btn-default">Cancel</button>
 
                         </div>
@@ -74,7 +74,7 @@
 
                     </thead>
                     <tbody>
-                    <tr ng-repeat="product in displayedProducts">
+                    <tr ng-repeat="product in displayedProducts track by $index">
                         <td>{{product.productId}}</td>
                         <td>{{product.productName | uppercase}}</td>
                         <td>{{product.description}}</td>

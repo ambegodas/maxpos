@@ -15,7 +15,8 @@
 var homeApp = angular.module( 'ngBoilerplate.home', [
   'ui.router',
   'plusOne',
-  'maxpos.account'
+  'maxpos.account',
+  'smart-table'
 ]);
 
 /**
@@ -40,10 +41,10 @@ homeApp.factory('saleService',function($resource){
 
   var service = {};
 
-    service.loadProductData = function(productId,success,failure){
-      var Product = $resource("/maxpos/products/:productId",{productId:'@productId'});
-      Product.get({productId:productId},success,failure);
-    };
+  service.loadProductData = function(productId,success,failure){
+    var Product = $resource("/maxpos/products/:productId",{productId:'@productId'});
+    Product.get({productId:productId},success,failure);
+  };
 
   return service;
 
@@ -64,6 +65,11 @@ homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService) {
 
    };
 
+    $scope.products = [];
+
+    $scope.addProduct = function(){
+      $scope.products.push($scope.product);
+    };
 
 });
 
