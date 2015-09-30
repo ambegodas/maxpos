@@ -603,7 +603,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"productId\" class=\"control-label col-sm-5\">Product ID</label>\n" +
     "                        <div class=\"col-sm-6\">\n" +
-    "                            <input type=\"text\" id=\"productId\" class=\"form-control\" ng-model=\"product.productId\">\n" +
+    "                            <input type=\"text\" id=\"productId\" class=\"form-control\" ng-model=\"productId\">\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
@@ -624,13 +624,13 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"qty\" class=\"control-label col-sm-5\">Qty</label>\n" +
     "                        <div class=\"col-sm-6\">\n" +
-    "                            <input type=\"text\" id=\"qty\" class=\"form-control\">\n" +
+    "                            <input type=\"text\" id=\"qty\" class=\"form-control\" ng-model=\"product.qty\">\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <div class=\"col-sm-8 col-sm-offset-3\">\n" +
-    "                            <button class=\"btn btn-primary\" ng-click=\"loadProductData(product.productId)\">Load</button>\n" +
+    "                            <button class=\"btn btn-primary\" ng-click=\"loadProductData(productId)\">Load</button>\n" +
     "                            <button class=\"btn btn-primary\" ng-click=\"addProduct()\">Add</button>\n" +
     "                            <button type=\"button\" class=\"btn btn-default\">Cancel</button>\n" +
     "\n" +
@@ -666,11 +666,11 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                        <td>{{product.productId}}</td>\n" +
     "                        <td>{{product.productName | uppercase}}</td>\n" +
     "                        <td>{{product.description}}</td>\n" +
-    "                        <td>{{product.measuredIn}}</td>\n" +
-    "                        <th>Qty</th>\n" +
     "                        <td>{{product.price}}</td>\n" +
+    "                        <td>{{product.measuredIn}}</td>\n" +
+    "                        <th>{{product.qty}}</th>\n" +
     "                        <td>\n" +
-    "                            <button type=\"button\" ng-click=\"openUpdateProductModal(product)\" class=\"btn btn-sm btn-danger\">\n" +
+    "                            <button type=\"button\" ng-click=\"removeProduct(product)\" class=\"btn btn-sm btn-danger\">\n" +
     "                                <i class=\"glyphicon glyphicon-remove\">\n" +
     "                                </i>\n" +
     "                            </button>\n" +

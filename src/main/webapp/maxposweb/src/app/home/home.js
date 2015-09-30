@@ -71,5 +71,12 @@ homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService) {
       $scope.products.push($scope.product);
     };
 
+    $scope.removeProduct = function(product){
+      var index = $scope.products.indexOf(product);
+      if (index !== -1) {
+        $scope.products.splice(index, 1);
+      }
+    }
+
 });
 

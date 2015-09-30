@@ -15,7 +15,7 @@
                     <div class="form-group">
                         <label for="productId" class="control-label col-sm-5">Product ID</label>
                         <div class="col-sm-6">
-                            <input type="text" id="productId" class="form-control" ng-model="product.productId">
+                            <input type="text" id="productId" class="form-control" ng-model="productId">
                         </div>
                     </div>
 
@@ -36,13 +36,13 @@
                     <div class="form-group">
                         <label for="qty" class="control-label col-sm-5">Qty</label>
                         <div class="col-sm-6">
-                            <input type="text" id="qty" class="form-control">
+                            <input type="text" id="qty" class="form-control" ng-model="product.qty">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-sm-8 col-sm-offset-3">
-                            <button class="btn btn-primary" ng-click="loadProductData(product.productId)">Load</button>
+                            <button class="btn btn-primary" ng-click="loadProductData(productId)">Load</button>
                             <button class="btn btn-primary" ng-click="addProduct()">Add</button>
                             <button type="button" class="btn btn-default">Cancel</button>
 
@@ -78,11 +78,11 @@
                         <td>{{product.productId}}</td>
                         <td>{{product.productName | uppercase}}</td>
                         <td>{{product.description}}</td>
-                        <td>{{product.measuredIn}}</td>
-                        <th>Qty</th>
                         <td>{{product.price}}</td>
+                        <td>{{product.measuredIn}}</td>
+                        <th>{{product.qty}}</th>
                         <td>
-                            <button type="button" ng-click="openUpdateProductModal(product)" class="btn btn-sm btn-danger">
+                            <button type="button" ng-click="removeProduct(product)" class="btn btn-sm btn-danger">
                                 <i class="glyphicon glyphicon-remove">
                                 </i>
                             </button>
