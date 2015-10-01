@@ -76,7 +76,9 @@ homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService) {
       if (index !== -1) {
         $scope.products.splice(index, 1);
       }
-    }
+    } ;
+
+   $scope.finalTotal = 100;
 
 });
 

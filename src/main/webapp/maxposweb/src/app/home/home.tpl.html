@@ -66,12 +66,9 @@
                         <th>Price</th>
                         <th>Measured In</th>
                         <th>Qty</th>
-                    </tr>
+                        <th>Sub Total</th>
 
-                    <tr>
-                        <th colspan="6"><input st-search="" class="form-control" placeholder="Search..." type="text"/></th>
                     </tr>
-
                     </thead>
                     <tbody>
                     <tr ng-repeat="product in displayedProducts track by $index">
@@ -81,6 +78,7 @@
                         <td>{{product.price}}</td>
                         <td>{{product.measuredIn}}</td>
                         <th>{{product.qty}}</th>
+                        <th>{{product.price * product.qty}}</th>
                         <td>
                             <button type="button" ng-click="removeProduct(product)" class="btn btn-sm btn-danger">
                                 <i class="glyphicon glyphicon-remove">
@@ -99,4 +97,12 @@
                 </table>
             </div>
     </div>
+</div>
+
+<div class="row">
+     <div class="col-sm-4 col-sm-offset-8">
+         <div class="panel panel-info">
+             <label class="control-label label-info">{{finalTotal}}</label>
+         </div>
+      </div>
 </div>

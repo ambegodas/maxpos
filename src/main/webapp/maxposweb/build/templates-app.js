@@ -654,12 +654,9 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                        <th>Price</th>\n" +
     "                        <th>Measured In</th>\n" +
     "                        <th>Qty</th>\n" +
-    "                    </tr>\n" +
+    "                        <th>Sub Total</th>\n" +
     "\n" +
-    "                    <tr>\n" +
-    "                        <th colspan=\"6\"><input st-search=\"\" class=\"form-control\" placeholder=\"Search...\" type=\"text\"/></th>\n" +
     "                    </tr>\n" +
-    "\n" +
     "                    </thead>\n" +
     "                    <tbody>\n" +
     "                    <tr ng-repeat=\"product in displayedProducts track by $index\">\n" +
@@ -669,6 +666,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                        <td>{{product.price}}</td>\n" +
     "                        <td>{{product.measuredIn}}</td>\n" +
     "                        <th>{{product.qty}}</th>\n" +
+    "                        <th>{{product.price * product.qty}}</th>\n" +
     "                        <td>\n" +
     "                            <button type=\"button\" ng-click=\"removeProduct(product)\" class=\"btn btn-sm btn-danger\">\n" +
     "                                <i class=\"glyphicon glyphicon-remove\">\n" +
@@ -688,7 +686,14 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            </div>\n" +
     "    </div>\n" +
     "</div>\n" +
-    "");
+    "\n" +
+    "<div class=\"row\">\n" +
+    "     <div class=\"col-sm-4 col-sm-offset-8\">\n" +
+    "         <div class=\"panel panel-info\">\n" +
+    "             <label class=\"control-label label-info\">{{finalTotal}}</label>\n" +
+    "         </div>\n" +
+    "      </div>\n" +
+    "</div>");
 }]);
 
 angular.module("inventory/inventory.tpl.html", []).run(["$templateCache", function($templateCache) {
