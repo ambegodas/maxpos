@@ -631,7 +631,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                    <div class=\"form-group\">\n" +
     "                        <div class=\"col-sm-8 col-sm-offset-3\">\n" +
     "                            <button class=\"btn btn-primary\" ng-click=\"loadProductData(productId)\">Load</button>\n" +
-    "                            <button class=\"btn btn-primary\" ng-click=\"addProduct()\">Add</button>\n" +
+    "                            <button class=\"btn btn-primary\" ng-click=\"addProduct(product)\">Add</button>\n" +
     "                            <button type=\"button\" class=\"btn btn-default\">Cancel</button>\n" +
     "\n" +
     "                        </div>\n" +

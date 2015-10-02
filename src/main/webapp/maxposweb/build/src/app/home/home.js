@@ -66,19 +66,24 @@ homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService) {
    };
 
     $scope.products = [];
+    $scope.finalTotal = 0;
 
-    $scope.addProduct = function(){
-      $scope.products.push($scope.product);
+    $scope.addProduct = function(product){
+      $scope.products.push(product);
+        var subTotal = product.price * product.qty;
+        $scope.finalTotal = $scope.finalTotal + subTotal;
+        $scope.product.price = 1000;
     };
 
     $scope.removeProduct = function(product){
       var index = $scope.products.indexOf(product);
       if (index !== -1) {
         $scope.products.splice(index, 1);
+        var subTotal = product.price * product.qty;
+        $scope.finalTotal = $scope.finalTotal - subTotal;
       }
-    } ;
+    };
 
-   $scope.finalTotal = 100;
 
 });
 
