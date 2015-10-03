@@ -55,9 +55,9 @@ homeApp.factory('saleService',function($resource){
  */
 homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService) {
 
-   $scope.loadProductData = function(proudctID){
+   $scope.loadProductData = function(product){
 
-     saleService.loadProductData(proudctID, function(data){
+     saleService.loadProductData(product.productId, function(data){
        $scope.product = data;
      },function(){
        alert("Error while loading product data");
@@ -68,11 +68,18 @@ homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService) {
     $scope.products = [];
     $scope.finalTotal = 0;
 
+
     $scope.addProduct = function(product){
       $scope.products.push(product);
         var subTotal = product.price * product.qty;
         $scope.finalTotal = $scope.finalTotal + subTotal;
-        $scope.product.price = 1000;
+      /*
+       Setting the scope.product to any empty object will not update the values in the table because the newly assigned object is
+       not added the collection bound to the table. This done in order to reset the input fields of the form.
+       If you update the same object using scope.product.productName, the table will get updated.
+       This is dirty trick to reset the input fields of the form.
+       */
+        $scope.product = {};
     };
 
     $scope.removeProduct = function(product){
@@ -83,7 +90,6 @@ homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService) {
         $scope.finalTotal = $scope.finalTotal - subTotal;
       }
     };
-
 
 });
 
