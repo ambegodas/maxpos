@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="height: 85% ; overflow: hidden">
     <div class="col-sm-4">
             <div class="panel panel-default panel-info">
 
@@ -54,10 +54,10 @@
             </div>
     </div>
 
-    <div class="col-sm-8	">
+    <div class="col-sm-8" style="height:100%; overflow-y: auto">
             <div class="panel panel-default panel-info">
 
-                <table st-table="displayedProducts" st-safe-src="products" class="table table-condensed">
+                <table st-table="displayedProducts" st-safe-src="products"  class="table table-condensed">
                     <thead>
                     <tr>
                         <th>Product ID</th>
@@ -88,18 +88,18 @@
                     </tr>
                     </tbody>
                     <tfoot>
-                    <tr>
+                    <!--tr>
                         <td colspan="9" class="text-center">
                             <div st-pagination="" st-items-by-page="4" st-displayed-pages="7"></div>
                         </td>
-                    </tr>
+                    </tr -->
                     </tfoot>
                 </table>
             </div>
     </div>
 </div>
 
-<div class="row">
+<div class="row" style="height:15%; overflow: hidden">
      <div class="col-sm-4 col-sm-offset-8">
          <div class="panel panel-info">
              <label class="control-label label-info">{{finalTotal}}</label>

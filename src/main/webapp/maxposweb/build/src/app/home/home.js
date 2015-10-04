@@ -50,9 +50,7 @@ homeApp.factory('saleService',function($resource){
 
 });
 
-/**
- * And of course we define a controller for our route.
- */
+
 homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService) {
 
    $scope.loadProductData = function(product){

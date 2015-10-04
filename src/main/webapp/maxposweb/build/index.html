@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="ngBoilerplate" ng-controller="AppCtrl">
+<html ng-app="ngBoilerplate" ng-controller="AppCtrl" style="height:100%; overflow: hidden;margin: 0">
   <head>
     <title ng-bind="pageTitle"></title>
 
@@ -56,12 +56,12 @@
     <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
       { "parsetags": "explicit" }
     </script>
+
+
   </head>
-  <body>
-    <div class="container">
+  <body style="padding-bottom: 70px; height:100%; overflow: hidden;margin: 0">
 
-
-
+    <div class="container" style="height: 20%">
       <div class="navbar navbar-default">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle"
@@ -104,29 +104,16 @@
           <button class="btn btn-danger navbar-btn navbar-right"  ng-click="logout()">Logout</button>
         </div>
       </div>
+    </div>
 
-
-
-
-
+    <div class="container" ui-view="main" style="height: 75%">
 
     </div>
 
-    <div class="container" ui-view="main">
-
-    </div>
-
-    <footer class="footer navbar-fixed-bottom">
+    <footer class="navbar navbar-default navbar-fixed-bottom" style="height: 5%">
       <div class="container">
         <div class="footer-inner">
-          <ul class="social">
-            <li><a target="_blank" href="http://gplus.to/joshdmiller"><i class="fa fa-google-plus-sign"></i></a></li>
-            <li><a target="_blank" href="http://twitter.com/joshdmiller"><i class="fa fa-twitter-sign"></i></a></li>
-            <li><a target="_blank" href="http://linkedin.com/in/joshdmiller"><i class="fa fa-linkedin-sign"></i></a></li>
-            <li><a target="_blank" href="http://github.com/ngbp/ngbp"><i class="fa fa-github-sign"></i></a></li>
-          </ul>
-
-          <p>
+           <p>
             (c) 2015 Pathmasri Ambegoda</a>.
           </p>
         </div>

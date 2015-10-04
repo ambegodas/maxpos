@@ -586,7 +586,7 @@ angular.module("account/login.tpl.html", []).run(["$templateCache", function($te
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
-    "<div class=\"row\">\n" +
+    "<div class=\"row\" style=\"height: 85% ; overflow: hidden\">\n" +
     "    <div class=\"col-sm-4\">\n" +
     "            <div class=\"panel panel-default panel-info\">\n" +
     "\n" +
@@ -642,10 +642,10 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"col-sm-8	\">\n" +
+    "    <div class=\"col-sm-8\" style=\"height:100%; overflow-y: auto\">\n" +
     "            <div class=\"panel panel-default panel-info\">\n" +
     "\n" +
-    "                <table st-table=\"displayedProducts\" st-safe-src=\"products\" class=\"table table-condensed\">\n" +
+    "                <table st-table=\"displayedProducts\" st-safe-src=\"products\"  class=\"table table-condensed\">\n" +
     "                    <thead>\n" +
     "                    <tr>\n" +
     "                        <th>Product ID</th>\n" +
@@ -676,18 +676,18 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                    </tr>\n" +
     "                    </tbody>\n" +
     "                    <tfoot>\n" +
-    "                    <tr>\n" +
+    "                    <!--tr>\n" +
     "                        <td colspan=\"9\" class=\"text-center\">\n" +
     "                            <div st-pagination=\"\" st-items-by-page=\"4\" st-displayed-pages=\"7\"></div>\n" +
     "                        </td>\n" +
-    "                    </tr>\n" +
+    "                    </tr -->\n" +
     "                    </tfoot>\n" +
     "                </table>\n" +
     "            </div>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
-    "<div class=\"row\">\n" +
+    "<div class=\"row\" style=\"height:15%; overflow: hidden\">\n" +
     "     <div class=\"col-sm-4 col-sm-offset-8\">\n" +
     "         <div class=\"panel panel-info\">\n" +
     "             <label class=\"control-label label-info\">{{finalTotal}}</label>\n" +
