@@ -1,5 +1,5 @@
-<div class="row" style="height: 85% ; overflow: hidden">
-    <div class="col-sm-4">
+<div class="row" style="height: 100% ; overflow: hidden">
+    <div class="col-sm-4" style="height: 100% ; overflow: hidden">
             <div class="panel panel-default panel-info">
 
                 <div class="panel-body">
@@ -54,8 +54,10 @@
             </div>
     </div>
 
-    <div class="col-sm-8" style="height:100%; overflow-y: auto">
-            <div class="panel panel-default panel-info">
+    <div class="col-sm-8" style="height:100%; overflow-y: hidden">
+
+        <div class="row" style="height:70%; overflow-y: hidden">
+            <div class="panel panel-default panel-info" style="height:100%; overflow-y: auto">
 
                 <table st-table="displayedProducts" st-safe-src="products"  class="table table-condensed">
                     <thead>
@@ -96,13 +98,40 @@
                     </tfoot>
                 </table>
             </div>
+        </div>
+
+
+
+        <div class="row" style="height:30%; overflow: hidden">
+
+            <div class="container col-sm-4 col-sm-offset-5">
+                <table class="table table-striped">
+                    <tr>
+                        <td>Total</td>
+                        <td>{{finalTotal}}</td>
+                    </tr>
+                    <tr>
+                        <td>Tax</td>
+                        <td>0</td>
+
+                    </tr>
+                    <tr style="width:100%">
+                        <td width="20%">To Pay</td>
+                        <td width="20%">{{finalTotal}}</td>
+                        <td width="30%">
+                            <button type="button" class="btn btn-sm btn-info">Pay
+                            </button>
+                        </td>
+                        <td width="30%"><button type="button" class="btn btn-sm btn-info">Void
+                        </button></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+
     </div>
 </div>
 
-<div class="row" style="height:15%; overflow: hidden">
-     <div class="col-sm-4 col-sm-offset-8">
-         <div class="panel panel-info">
-             <label class="control-label label-info">{{finalTotal}}</label>
-         </div>
-      </div>
-</div>
+

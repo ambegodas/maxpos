@@ -75,7 +75,7 @@ homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService) {
        Setting the scope.product to any empty object will not update the values in the table because the newly assigned object is
        not added the collection bound to the table. This done in order to reset the input fields of the form.
        If you update the same object using scope.product.productName, the table will get updated.
-       This is dirty trick to reset the input fields of the form.
+       This is a dirty trick to reset the input fields of the form.
        */
         $scope.product = {};
     };

@@ -586,8 +586,8 @@ angular.module("account/login.tpl.html", []).run(["$templateCache", function($te
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
-    "<div class=\"row\" style=\"height: 85% ; overflow: hidden\">\n" +
-    "    <div class=\"col-sm-4\">\n" +
+    "<div class=\"row\" style=\"height: 100% ; overflow: hidden\">\n" +
+    "    <div class=\"col-sm-4\" style=\"height: 100% ; overflow: hidden\">\n" +
     "            <div class=\"panel panel-default panel-info\">\n" +
     "\n" +
     "                <div class=\"panel-body\">\n" +
@@ -642,8 +642,10 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"col-sm-8\" style=\"height:100%; overflow-y: auto\">\n" +
-    "            <div class=\"panel panel-default panel-info\">\n" +
+    "    <div class=\"col-sm-8\" style=\"height:100%; overflow-y: hidden\">\n" +
+    "\n" +
+    "        <div class=\"row\" style=\"height:70%; overflow-y: hidden\">\n" +
+    "            <div class=\"panel panel-default panel-info\" style=\"height:100%; overflow-y: auto\">\n" +
     "\n" +
     "                <table st-table=\"displayedProducts\" st-safe-src=\"products\"  class=\"table table-condensed\">\n" +
     "                    <thead>\n" +
@@ -684,16 +686,44 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                    </tfoot>\n" +
     "                </table>\n" +
     "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "        <div class=\"row\" style=\"height:30%; overflow: hidden\">\n" +
+    "\n" +
+    "            <div class=\"container col-sm-4 col-sm-offset-5\">\n" +
+    "                <table class=\"table table-striped\">\n" +
+    "                    <tr>\n" +
+    "                        <td>Total</td>\n" +
+    "                        <td>{{finalTotal}}</td>\n" +
+    "                    </tr>\n" +
+    "                    <tr>\n" +
+    "                        <td>Tax</td>\n" +
+    "                        <td>0</td>\n" +
+    "\n" +
+    "                    </tr>\n" +
+    "                    <tr style=\"width:100%\">\n" +
+    "                        <td width=\"20%\">To Pay</td>\n" +
+    "                        <td width=\"20%\">{{finalTotal}}</td>\n" +
+    "                        <td width=\"30%\">\n" +
+    "                            <button type=\"button\" class=\"btn btn-sm btn-info\">Pay\n" +
+    "                            </button>\n" +
+    "                        </td>\n" +
+    "                        <td width=\"30%\"><button type=\"button\" class=\"btn btn-sm btn-info\">Void\n" +
+    "                        </button></td>\n" +
+    "                    </tr>\n" +
+    "                </table>\n" +
+    "\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
-    "<div class=\"row\" style=\"height:15%; overflow: hidden\">\n" +
-    "     <div class=\"col-sm-4 col-sm-offset-8\">\n" +
-    "         <div class=\"panel panel-info\">\n" +
-    "             <label class=\"control-label label-info\">{{finalTotal}}</label>\n" +
-    "         </div>\n" +
-    "      </div>\n" +
-    "</div>");
+    "\n" +
+    "");
 }]);
 
 angular.module("inventory/inventory.tpl.html", []).run(["$templateCache", function($templateCache) {
