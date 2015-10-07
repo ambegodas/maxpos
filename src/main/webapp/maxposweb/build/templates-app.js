@@ -692,33 +692,31 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "        <div class=\"row\" style=\"height:30%; overflow: hidden\">\n" +
     "\n" +
-    "            <div class=\"container col-sm-4 col-sm-offset-5\">\n" +
+    "            <div class=\"container col-sm-6 col-sm-offset-5\">\n" +
     "                <table class=\"table table-striped\">\n" +
     "                    <tr>\n" +
-    "                        <td>Total</td>\n" +
-    "                        <td>{{finalTotal}}</td>\n" +
+    "                        <td width=\"20%\">Total</td>\n" +
+    "                        <td width=\"20%\">{{finalTotal}}</td>\n" +
     "                    </tr>\n" +
     "                    <tr>\n" +
-    "                        <td>Tax</td>\n" +
-    "                        <td>0</td>\n" +
+    "                        <td width=\"20%\">Tax</td>\n" +
+    "                        <td width=\"20%\">0</td>\n" +
     "\n" +
     "                    </tr>\n" +
     "                    <tr style=\"width:100%\">\n" +
-    "                        <td width=\"20%\">To Pay</td>\n" +
-    "                        <td width=\"20%\">{{finalTotal}}</td>\n" +
-    "                        <td width=\"30%\">\n" +
+    "                        <td width=\"25%\">To Pay</td>\n" +
+    "                        <td width=\"25%\">{{finalTotal}}</td>\n" +
+    "                        <td width=\"25%\">\n" +
     "                            <button type=\"button\" class=\"btn btn-sm btn-info\">Pay\n" +
     "                            </button>\n" +
     "                        </td>\n" +
-    "                        <td width=\"30%\"><button type=\"button\" class=\"btn btn-sm btn-info\">Void\n" +
+    "                        <td width=\"25%\"><button type=\"button\" class=\"btn btn-sm btn-info\">Void\n" +
     "                        </button></td>\n" +
     "                    </tr>\n" +
     "                </table>\n" +
     "\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "\n" +
-    "\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
