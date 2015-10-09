@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'account/account.tpl.html', 'account/createAccount.tpl.html', 'account/login.tpl.html', 'home/home.tpl.html', 'inventory/inventory.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'account/account.tpl.html', 'account/createAccount.tpl.html', 'account/login.tpl.html', 'history/history.tpl.html', 'home/home.tpl.html', 'inventory/inventory.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -584,6 +584,13 @@ angular.module("account/login.tpl.html", []).run(["$templateCache", function($te
     "</div>");
 }]);
 
+angular.module("history/history.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("history/history.tpl.html",
+    "<div>\n" +
+    "    Test\n" +
+    "</div>");
+}]);
+
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
     "<div class=\"row\" style=\"height: 100% ; overflow: hidden\">\n" +
@@ -596,7 +603,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"barCode\" class=\"control-label col-sm-5\">Bar Code</label>\n" +
     "                        <div class=\"col-sm-6\">\n" +
-    "                            <input type=\"text\" id=\"barCode\" class=\"form-control\">\n" +
+    "                            <input type=\"text\" id=\"barCode\" class=\"form-control\" ng-model=\"shared.barCode\">\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
@@ -696,7 +703,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                <table class=\"table table-striped\">\n" +
     "                    <tr>\n" +
     "                        <td width=\"20%\">Total</td>\n" +
-    "                        <td width=\"20%\">{{finalTotal}}</td>\n" +
+    "                        <td width=\"20%\">{{total.finalTotal}}</td>\n" +
     "                    </tr>\n" +
     "                    <tr>\n" +
     "                        <td width=\"20%\">Tax</td>\n" +
@@ -705,7 +712,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                    </tr>\n" +
     "                    <tr style=\"width:100%\">\n" +
     "                        <td width=\"25%\">To Pay</td>\n" +
-    "                        <td width=\"25%\">{{finalTotal}}</td>\n" +
+    "                        <td width=\"25%\">{{total.finalTotal}}</td>\n" +
     "                        <td width=\"25%\">\n" +
     "                            <button type=\"button\" class=\"btn btn-sm btn-info\">Pay\n" +
     "                            </button>\n" +

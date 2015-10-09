@@ -8,7 +8,7 @@
                     <div class="form-group">
                         <label for="barCode" class="control-label col-sm-5">Bar Code</label>
                         <div class="col-sm-6">
-                            <input type="text" id="barCode" class="form-control">
+                            <input type="text" id="barCode" class="form-control" ng-model="shared.barCode">
                         </div>
                     </div>
 
@@ -108,7 +108,7 @@
                 <table class="table table-striped">
                     <tr>
                         <td width="20%">Total</td>
-                        <td width="20%">{{finalTotal}}</td>
+                        <td width="20%">{{total.finalTotal}}</td>
                     </tr>
                     <tr>
                         <td width="20%">Tax</td>
@@ -117,7 +117,7 @@
                     </tr>
                     <tr style="width:100%">
                         <td width="25%">To Pay</td>
-                        <td width="25%">{{finalTotal}}</td>
+                        <td width="25%">{{total.finalTotal}}</td>
                         <td width="25%">
                             <button type="button" class="btn btn-sm btn-info">Pay
                             </button>

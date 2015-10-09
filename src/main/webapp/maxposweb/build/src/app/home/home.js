@@ -50,8 +50,25 @@ homeApp.factory('saleService',function($resource){
 
 });
 
+// To maintain the products across different statuses
+homeApp.factory('products', function(){
+    return [];
+});
 
-homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService) {
+homeApp.factory('total', function(){
+
+    var total = {'finalTotal':0};
+    return total;
+});
+
+
+
+
+homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService,products,total) {
+
+
+    $scope.products = products;
+    $scope.total = total;
 
    $scope.loadProductData = function(product){
 
@@ -63,14 +80,11 @@ homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService) {
 
    };
 
-    $scope.products = [];
-    $scope.finalTotal = 0;
-
 
     $scope.addProduct = function(product){
       $scope.products.push(product);
         var subTotal = product.price * product.qty;
-        $scope.finalTotal = $scope.finalTotal + subTotal;
+        $scope.total.finalTotal = $scope.total.finalTotal + subTotal;
       /*
        Setting the scope.product to any empty object will not update the values in the table because the newly assigned object is
        not added the collection bound to the table. This done in order to reset the input fields of the form.
@@ -85,7 +99,7 @@ homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService) {
       if (index !== -1) {
         $scope.products.splice(index, 1);
         var subTotal = product.price * product.qty;
-        $scope.finalTotal = $scope.finalTotal - subTotal;
+        $scope.total.finalTotal = $scope.total.finalTotal - subTotal;
       }
     };
 
