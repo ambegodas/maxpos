@@ -610,35 +610,35 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"productId\" class=\"control-label col-sm-5\">Product ID</label>\n" +
     "                        <div class=\"col-sm-6\">\n" +
-    "                            <input type=\"text\" id=\"productId\" class=\"form-control\" ng-model=\"product.productId\">\n" +
+    "                            <input type=\"text\" id=\"productId\" class=\"form-control\" ng-model=\"unitSale.product.productId\">\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"productName\" class=\"control-label col-sm-5\">Product Name</label>\n" +
     "                        <div class=\"col-sm-6\">\n" +
-    "                            <input type=\"text\" id=\"productName\" class=\"form-control\" ng-model=\"product.productName\">\n" +
+    "                            <input type=\"text\" id=\"productName\" class=\"form-control\" ng-model=\"unitSale.product.productName\">\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"measuredIn\" class=\"control-label col-sm-5\">Measured In</label>\n" +
     "                        <div class=\"col-sm-6\">\n" +
-    "                            <input type=\"text\" id=\"measuredIn\" class=\"form-control\" ng-model=\"product.measuredIn\">\n" +
+    "                            <input type=\"text\" id=\"measuredIn\" class=\"form-control\" ng-model=\"unitSale.product.measuredIn\">\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"qty\" class=\"control-label col-sm-5\">Qty</label>\n" +
     "                        <div class=\"col-sm-6\">\n" +
-    "                            <input type=\"text\" id=\"qty\" class=\"form-control\" ng-model=\"product.qty\">\n" +
+    "                            <input type=\"text\" id=\"qty\" class=\"form-control\" ng-model=\"unitSale.qty\">\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <div class=\"col-sm-8 col-sm-offset-3\">\n" +
-    "                            <button class=\"btn btn-primary\" ng-click=\"loadProductData(product)\">Load</button>\n" +
-    "                            <button class=\"btn btn-primary\" ng-click=\"addProduct(product)\">Add</button>\n" +
+    "                            <button class=\"btn btn-primary\" ng-click=\"loadProductData(unitSale)\">Load</button>\n" +
+    "                            <button class=\"btn btn-primary\" ng-click=\"addUnitSale(unitSale)\">Add</button>\n" +
     "                            <button type=\"button\" class=\"btn btn-default\">Cancel</button>\n" +
     "\n" +
     "                        </div>\n" +
@@ -654,7 +654,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "        <div class=\"row\" style=\"height:70%; overflow-y: hidden\">\n" +
     "            <div class=\"panel panel-default panel-info\" style=\"height:100%; overflow-y: auto\">\n" +
     "\n" +
-    "                <table st-table=\"displayedProducts\" st-safe-src=\"products\"  class=\"table table-condensed\">\n" +
+    "                <table st-table=\"displayedUnitSales\" st-safe-src=\"unitSales\"  class=\"table table-condensed\">\n" +
     "                    <thead>\n" +
     "                    <tr>\n" +
     "                        <th>Product ID</th>\n" +
@@ -668,16 +668,16 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                    </tr>\n" +
     "                    </thead>\n" +
     "                    <tbody>\n" +
-    "                    <tr ng-repeat=\"product in displayedProducts track by $index\">\n" +
-    "                        <td>{{product.productId}}</td>\n" +
-    "                        <td>{{product.productName | uppercase}}</td>\n" +
-    "                        <td>{{product.description}}</td>\n" +
-    "                        <td>{{product.price}}</td>\n" +
-    "                        <td>{{product.measuredIn}}</td>\n" +
-    "                        <th>{{product.qty}}</th>\n" +
-    "                        <th>{{product.price * product.qty}}</th>\n" +
+    "                    <tr ng-repeat=\"unitSale in displayedUnitSales track by $index\">\n" +
+    "                        <td>{{unitSale.product.productId}}</td>\n" +
+    "                        <td>{{unitSale.product.productName | uppercase}}</td>\n" +
+    "                        <td>{{unitSale.product.description}}</td>\n" +
+    "                        <td>{{unitSale.product.price}}</td>\n" +
+    "                        <td>{{unitSale.product.measuredIn}}</td>\n" +
+    "                        <th>{{unitSale.qty}}</th>\n" +
+    "                        <th>{{unitSale.unitTotal}}</th>\n" +
     "                        <td>\n" +
-    "                            <button type=\"button\" ng-click=\"removeProduct(product)\" class=\"btn btn-sm btn-danger\">\n" +
+    "                            <button type=\"button\" ng-click=\"removeUnitSale(unitSale)\" class=\"btn btn-sm btn-danger\">\n" +
     "                                <i class=\"glyphicon glyphicon-remove\">\n" +
     "                                </i>\n" +
     "                            </button>\n" +
@@ -703,7 +703,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                <table class=\"table table-striped\">\n" +
     "                    <tr>\n" +
     "                        <td width=\"20%\">Total</td>\n" +
-    "                        <td width=\"20%\">{{total.finalTotal}}</td>\n" +
+    "                        <td width=\"20%\">{{sale.finalTotal}}</td>\n" +
     "                    </tr>\n" +
     "                    <tr>\n" +
     "                        <td width=\"20%\">Tax</td>\n" +
@@ -712,9 +712,9 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                    </tr>\n" +
     "                    <tr style=\"width:100%\">\n" +
     "                        <td width=\"25%\">To Pay</td>\n" +
-    "                        <td width=\"25%\">{{total.finalTotal}}</td>\n" +
+    "                        <td width=\"25%\">{{sale.finalTotal}}</td>\n" +
     "                        <td width=\"25%\">\n" +
-    "                            <button type=\"button\" class=\"btn btn-sm btn-info\">Pay\n" +
+    "                            <button type=\"button\" class=\"btn btn-sm btn-info\" ng-click=\"pay()\">Pay\n" +
     "                            </button>\n" +
     "                        </td>\n" +
     "                        <td width=\"25%\"><button type=\"button\" class=\"btn btn-sm btn-info\">Void\n" +

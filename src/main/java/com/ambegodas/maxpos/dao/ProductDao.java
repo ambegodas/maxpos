@@ -9,9 +9,10 @@ import java.util.List;
  */
 public interface ProductDao {
 
-    public Product getProduct(int  productId);
+    public Product getProduct(long  productId);
     public Product updateProduct(Product product);
     public void deleteProduct(Product product);
     public Product addProduct(Product product);
     public List<Product> getProducts();
+    public boolean sellProduct(int soldCount,long productId);
 }

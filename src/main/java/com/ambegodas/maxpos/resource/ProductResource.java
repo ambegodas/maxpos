@@ -9,22 +9,22 @@ import java.util.Date;
  */
 public class ProductResource extends ResourceSupport{
 
-	private int productId;
+	private long productId;
 	private String productName;
 	private String description;
 	private double price;
 	private double cost;
 	private String measuredIn ;
-	private long availableQty;
-	private long soldQty;
+	private int availableQty;
+	private int soldQty;
 	private Date addedDate;
 
 
-	public int getProductId() {
+	public long getProductId() {
 		return productId;
 	}
 
-	public void setProductId(int productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
 
@@ -68,19 +68,19 @@ public class ProductResource extends ResourceSupport{
 		this.measuredIn = measuredIn;
 	}
 
-	public long getAvailableQty() {
+	public int getAvailableQty() {
 		return availableQty;
 	}
 
-	public void setAvailableQty(long availableQty) {
+	public void setAvailableQty(int availableQty) {
 		this.availableQty = availableQty;
 	}
 
-	public long getSoldQty() {
+	public int getSoldQty() {
 		return soldQty;
 	}
 
-	public void setSoldQty(long soldQty) {
+	public void setSoldQty(int soldQty) {
 		this.soldQty = soldQty;
 	}
 

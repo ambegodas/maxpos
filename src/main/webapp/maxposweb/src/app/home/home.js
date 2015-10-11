@@ -46,34 +46,39 @@ homeApp.factory('saleService',function($resource){
     Product.get({productId:productId},success,failure);
   };
 
+  service.addSale = function(sale, success, failure){
+       var Sale = $resource("/maxpos/sale");
+        Sale.save({},sale,success,failure);
+  };
+
   return service;
 
 });
 
 // To maintain the products across different statuses
-homeApp.factory('products', function(){
+homeApp.factory('unitSales', function(){
     return [];
 });
 
-homeApp.factory('total', function(){
+homeApp.factory('sale', function(){
 
-    var total = {'finalTotal':0};
-    return total;
+    var sale = {'finalTotal':0};
+    return sale;
 });
 
 
 
 
-homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService,products,total) {
+homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService,unitSales,sale) {
 
 
-    $scope.products = products;
-    $scope.total = total;
+    $scope.unitSales = unitSales;
+    $scope.sale = sale;
 
-   $scope.loadProductData = function(product){
+   $scope.loadProductData = function(unitSale){
 
-     saleService.loadProductData(product.productId, function(data){
-       $scope.product = data;
+     saleService.loadProductData(unitSale.product.productId, function(data){
+       $scope.unitSale.product = data;
      },function(){
        alert("Error while loading product data");
      });
@@ -81,26 +86,39 @@ homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService,pr
    };
 
 
-    $scope.addProduct = function(product){
-      $scope.products.push(product);
-        var subTotal = product.price * product.qty;
-        $scope.total.finalTotal = $scope.total.finalTotal + subTotal;
+    $scope.addUnitSale = function(unitSale){
+
+      $scope.unitSales.push(unitSale);
+
+        unitSale.unitTotal = unitSale.product.price * unitSale.qty;
+        $scope.sale.finalTotal = $scope.sale.finalTotal + unitSale.unitTotal;
       /*
-       Setting the scope.product to any empty object will not update the values in the table because the newly assigned object is
+       Setting the scope.unitSale to any empty object will not update the values in the table because the newly assigned object is
        not added the collection bound to the table. This done in order to reset the input fields of the form.
-       If you update the same object using scope.product.productName, the table will get updated.
+       If you update the same object using scope.unitSale.product, the table will get updated.
        This is a dirty trick to reset the input fields of the form.
        */
-        $scope.product = {};
+        $scope.unitSale= {};
     };
 
-    $scope.removeProduct = function(product){
-      var index = $scope.products.indexOf(product);
+    $scope.removeUnitSale = function(unitSale){
+      var index = $scope.unitSales.indexOf(unitSale);
       if (index !== -1) {
-        $scope.products.splice(index, 1);
-        var subTotal = product.price * product.qty;
-        $scope.total.finalTotal = $scope.total.finalTotal - subTotal;
+        $scope.unitSales.splice(index, 1);
+        var subTotal = unitSale.product.price * unitSale.qty;
+        $scope.sale.finalTotal = $scope.sale.finalTotal - subTotal;
       }
+    };
+
+    $scope.pay = function () {
+        $scope.sale.unitSales = $scope.unitSales;
+        saleService.addSale($scope.sale,function(returnedData){
+            alert("Payment Success");
+            $scope.sale.finalTotal = 0;
+            $scope.unitSales = [];
+        }, function(){
+            alert("Payment Failed");
+        });
     };
 
 });

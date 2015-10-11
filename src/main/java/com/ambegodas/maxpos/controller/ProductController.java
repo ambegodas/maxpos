@@ -31,7 +31,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/products/{productId}", method=RequestMethod.GET)
-	public ResponseEntity<ProductResource> getProduct(@PathVariable int productId){
+	public ResponseEntity<ProductResource> getProduct(@PathVariable long productId){
 	
 		Product product = productService.getProduct(productId);
 		
@@ -61,7 +61,8 @@ public class ProductController {
 
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public @ResponseBody List<Product> getProducts(){
-	 return	productService.getProducts().getProducts();
+
+		return	productService.getProducts().getProducts();
 	}
 
 	@RequestMapping(value = "/product", method = RequestMethod.PUT)

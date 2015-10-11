@@ -23,6 +23,7 @@ public class ProductResourceAsm extends ResourceAssemblerSupport<Product, Produc
 		
 		ProductResource productResource = new ProductResource();
 		productResource.setProductName(product.getProductName());
+		productResource.setDescription(product.getDescription());
 		productResource.setPrice(product.getPrice());
 		productResource.setProductId(product.getProductId());
 		productResource.setMeasuredIn(product.getMeasuredIn());

@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao;
 	
 
-	public Product getProduct(int productId) {
+	public Product getProduct(long productId) {
 		return productDao.getProduct(productId);
 	}
 
@@ -44,6 +44,11 @@ public class ProductServiceImpl implements ProductService {
 		ProductList productList = new ProductList();
 		productList.setProducts(accounts);
 		return productList ;
+	}
+
+	@Override
+	public boolean sellProduct(int soldCount) {
+		return false;
 	}
 
 }

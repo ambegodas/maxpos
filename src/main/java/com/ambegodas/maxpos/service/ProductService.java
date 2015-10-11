@@ -8,10 +8,11 @@ import com.ambegodas.maxpos.service.util.ProductList;
  */
 public interface ProductService {
 	
-	public Product getProduct(int productId);
+	public Product getProduct(long productId);
 	public Product updateProduct(Product product);
 	public void deleteProduct(Product product);
 	public Product addProduct(Product product);
 	public ProductList getProducts();
+	public boolean sellProduct(int soldCount);
 
 }
