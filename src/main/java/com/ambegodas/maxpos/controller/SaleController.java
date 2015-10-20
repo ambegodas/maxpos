@@ -33,6 +33,7 @@ public class SaleController {
     @RequestMapping(value = "/sale", method = RequestMethod.POST)
     public ResponseEntity<SaleResource> addSale (@RequestBody Sale sale){
 
+
        Sale addedSale = saleService.addSale(sale);
         if(addedSale != null){
             SaleResource res = new SaleResourceAsm().toResource(addedSale);

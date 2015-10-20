@@ -66,6 +66,12 @@ homeApp.factory('sale', function(){
     return sale;
 });
 
+homeApp.factory('transactionAudit', function(){
+
+    var sale = {'finalTotal':0};
+    return sale;
+});
+
 
 
 

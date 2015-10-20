@@ -52,7 +52,9 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public boolean sellProduct(int soldCount, long productId) {
 
-		Query query = em.createQuery("UPDATE Product p SET p.availableQty = p.availableQty- :soldCount WHERE p.productId= :id");
+		String queryString = "UPDATE Product p SET p.availableQty = p.availableQty- :soldCount, p.soldQty = p.soldQty + :soldCount "+
+				" WHERE p.productId= :id";
+		Query query = em.createQuery(queryString);
 
 		query.setParameter("soldCount", soldCount);
 		query.setParameter("id", productId);

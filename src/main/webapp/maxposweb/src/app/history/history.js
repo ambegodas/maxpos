@@ -15,8 +15,32 @@ historyApp.config(function ($stateProvider) {
 
 });
 
-historyApp.controller('HistoryCtrl',function($scope){
+historyApp.factory('historyService',function($resource){
+
+    var historyService = {};
+
+      historyService.loadHistory = function(success, failure){
+
+          var History = $resource("/maxpos/transactionAudits");
+          History.get({},success,failure);
+
+      };
+
+    return historyService;
+
+});
 
 
+historyApp.controller('HistoryCtrl',function($scope,historyService){
+
+    var loadHistory = function (){
+
+        historyService.loadHistory(function (returnedData) {
+            $scope.transactions = returnedData.transactionAuditList;
+        }, function(){
+            alert("Error Loading History");
+        });
+    };
+    loadHistory();
 
 });

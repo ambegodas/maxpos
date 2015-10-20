@@ -12,7 +12,7 @@ public class UnitSale {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long unitSaleId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "productId")
     private Product product;
     private int qty;

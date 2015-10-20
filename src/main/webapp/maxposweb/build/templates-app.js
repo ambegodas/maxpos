@@ -586,9 +586,54 @@ angular.module("account/login.tpl.html", []).run(["$templateCache", function($te
 
 angular.module("history/history.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("history/history.tpl.html",
-    "<div>\n" +
-    "    Test\n" +
-    "</div>");
+    "<div class=\"row\">\n" +
+    "    <div class=\"container\">\n" +
+    "        <div class=\"panel panel-default\">\n" +
+    "\n" +
+    "            <div class=\"panel-heading\">Transaction History</div>\n" +
+    "\n" +
+    "            <table st-table=\"displayedTransactions\" st-safe-src=\"transactions\" class=\"table table-condensed\">\n" +
+    "                <thead>\n" +
+    "                <tr>\n" +
+    "                    <th>Date</th>\n" +
+    "                    <th>Username</th>\n" +
+    "                    <th>Action</th>\n" +
+    "                    <th>Total</th>\n" +
+    "                    <th>Content</th>\n" +
+    "                </tr>\n" +
+    "                <tr>\n" +
+    "                    <th colspan=\"6\"><input st-search=\"\" class=\"form-control\" placeholder=\"Search...\" type=\"text\"/></th>\n" +
+    "                </tr>\n" +
+    "\n" +
+    "                </thead>\n" +
+    "                <tbody>\n" +
+    "                <tr ng-repeat=\"transaction in displayedTransactions\">\n" +
+    "                    <td>{{transaction.tnxTimestamp | date}}</td>\n" +
+    "                    <td>{{transaction.userId}}</td>\n" +
+    "                    <td>{{transaction.action}}</td>\n" +
+    "                    <td>{{transaction.total}}</td>\n" +
+    "                    <td>{{transaction.content}}</td>\n" +
+    "                    <td>\n" +
+    "                        <button type=\"button\" ng-click=\"openUpdateAgentModal(account)\" class=\"btn btn-sm btn-info\" data-toggle=\"modal\" data-target=\"#modify-user-modal\" >\n" +
+    "                            <i class=\"glyphicon glyphicon-edit\">\n" +
+    "                            </i>\n" +
+    "                        </button>\n" +
+    "                    </td>\n" +
+    "                </tr>\n" +
+    "                </tbody>\n" +
+    "                <tfoot>\n" +
+    "                <tr>\n" +
+    "                    <td colspan=\"8\" class=\"text-center\">\n" +
+    "                        <div st-pagination=\"\" st-items-by-page=\"4\" st-displayed-pages=\"7\"></div>\n" +
+    "                    </td>\n" +
+    "                </tr>\n" +
+    "                </tfoot>\n" +
+    "            </table>\n" +
+    "\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {

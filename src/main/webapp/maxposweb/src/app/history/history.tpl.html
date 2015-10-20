@@ -1,3 +1,47 @@
-<div>
-    Test
+<div class="row">
+    <div class="container">
+        <div class="panel panel-default">
+
+            <div class="panel-heading">Transaction History</div>
+
+            <table st-table="displayedTransactions" st-safe-src="transactions" class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Username</th>
+                    <th>Action</th>
+                    <th>Total</th>
+                    <th>Content</th>
+                </tr>
+                <tr>
+                    <th colspan="6"><input st-search="" class="form-control" placeholder="Search..." type="text"/></th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr ng-repeat="transaction in displayedTransactions">
+                    <td>{{transaction.tnxTimestamp | date}}</td>
+                    <td>{{transaction.userId}}</td>
+                    <td>{{transaction.action}}</td>
+                    <td>{{transaction.total}}</td>
+                    <td>{{transaction.content}}</td>
+                    <td>
+                        <button type="button" ng-click="openUpdateAgentModal(account)" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modify-user-modal" >
+                            <i class="glyphicon glyphicon-edit">
+                            </i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="8" class="text-center">
+                        <div st-pagination="" st-items-by-page="4" st-displayed-pages="7"></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
 </div>

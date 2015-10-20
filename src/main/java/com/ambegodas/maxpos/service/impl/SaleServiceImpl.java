@@ -2,10 +2,14 @@ package com.ambegodas.maxpos.service.impl;
 
 import com.ambegodas.maxpos.dao.ProductDao;
 import com.ambegodas.maxpos.dao.SaleDao;
+import com.ambegodas.maxpos.dao.TransactionAuditDao;
 import com.ambegodas.maxpos.model.Sale;
+import com.ambegodas.maxpos.model.TransactionAudit;
 import com.ambegodas.maxpos.model.UnitSale;
 import com.ambegodas.maxpos.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +27,9 @@ public class SaleServiceImpl implements SaleService{
 
     @Autowired
     private ProductDao productDao;
+
+    @Autowired
+    private TransactionAuditDao transactionAuditDao;
 
 
     public Sale getSale(int saleId) {
@@ -44,8 +51,24 @@ public class SaleServiceImpl implements SaleService{
             us.setSale(sale);
             productDao.sellProduct(us.getQty(),us.getProduct().getProductId());
         }
-            return saleDao.addSale(sale);
 
+        Sale addedSale = saleDao.addSale(sale);
+        updateTransactionAudit(addedSale);
 
+        return addedSale;
+
+    }
+
+    private void updateTransactionAudit(Sale sale){
+        TransactionAudit transactionAudit = new TransactionAudit();
+        UserDetails userDetails =
+                (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        transactionAudit.setUserId(userDetails.getUsername());
+        transactionAudit.setTnxTimestamp(new Date());
+        transactionAudit.setAction("Sale");
+        transactionAudit.setSaleId(sale.getSaleId());
+        transactionAudit.setTotal(sale.getPaidAmount());
+
+        transactionAuditDao.addTransactionAudit(transactionAudit);
     }
 }
