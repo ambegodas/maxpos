@@ -66,11 +66,6 @@ homeApp.factory('sale', function(){
     return sale;
 });
 
-homeApp.factory('transactionAudit', function(){
-
-    var sale = {'finalTotal':0};
-    return sale;
-});
 
 
 
@@ -121,7 +116,7 @@ homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService,un
         saleService.addSale($scope.sale,function(returnedData){
             alert("Payment Success");
             $scope.sale.finalTotal = 0;
-            $scope.unitSales = [];
+            unitSales.length = 0;
         }, function(){
             alert("Payment Failed");
         });

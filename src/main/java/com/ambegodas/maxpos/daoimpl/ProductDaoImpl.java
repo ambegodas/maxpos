@@ -3,6 +3,7 @@ package com.ambegodas.maxpos.daoimpl;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import com.ambegodas.maxpos.dao.ProductDao;
 import com.ambegodas.maxpos.model.Account;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 
 @Repository
+@Transactional
 public class ProductDaoImpl implements ProductDao {
 	
 	@PersistenceContext

@@ -35,6 +35,7 @@ public class AccountServiceImpl implements AccountService{
         accountDao.deleteAccount(account);
     }
 
+
     public Account addAccount(Account account) {
         return accountDao.addAccount(account);
     }

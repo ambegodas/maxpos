@@ -3,7 +3,7 @@
             <div class="panel panel-default panel-info">
 
                 <div class="panel-body">
-                <form action="" class="form-horizontal">
+                <form action="" class="form-horizontal" id="addProductForm" name="addProductForm" novalidate>
 
                     <div class="form-group">
                         <label for="barCode" class="control-label col-sm-5">Bar Code</label>
@@ -15,9 +15,10 @@
                     <div class="form-group">
                         <label for="productId" class="control-label col-sm-5">Product ID</label>
                         <div class="col-sm-6">
-                            <input type="text" id="productId" class="form-control" ng-model="unitSale.product.productId">
+                            <input required type="text" id="productId" name="productId" class="form-control" ng-model="unitSale.product.productId">
                         </div>
                     </div>
+
 
                     <div class="form-group">
                         <label for="productName" class="control-label col-sm-5">Product Name</label>
@@ -27,16 +28,16 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="measuredIn" class="control-label col-sm-5">Measured In</label>
+                        <label for="qty" class="control-label col-sm-5">Qty</label>
                         <div class="col-sm-6">
-                            <input type="text" id="measuredIn" class="form-control" ng-model="unitSale.product.measuredIn">
+                            <input type="text" id="qty" class="form-control" ng-model="unitSale.qty">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="qty" class="control-label col-sm-5">Qty</label>
+                        <label for="measuredIn" class="control-label col-sm-5">Measured In</label>
                         <div class="col-sm-6">
-                            <input type="text" id="qty" class="form-control" ng-model="unitSale.qty">
+                            <input type="text" id="measuredIn" class="form-control" ng-model="unitSale.product.measuredIn" disabled="disabled">
                         </div>
                     </div>
 
@@ -116,13 +117,15 @@
 
                     </tr>
                     <tr style="width:100%">
-                        <td width="25%">To Pay</td>
-                        <td width="25%">{{sale.finalTotal}}</td>
-                        <td width="25%">
+                        <td width="20%">To Pay</td>
+                        <td width="20%">{{sale.finalTotal}}</td>
+                        <td width="20%">
                             <button type="button" class="btn btn-sm btn-info" ng-click="pay()">Pay
                             </button>
                         </td>
-                        <td width="25%"><button type="button" class="btn btn-sm btn-info">Void
+                        <td width="20%"><button type="button" class="btn btn-sm btn-info">Void
+                        </button></td>
+                        <td width="20%"><button type="button" class="btn btn-sm btn-info">Reset
                         </button></td>
                     </tr>
                 </table>

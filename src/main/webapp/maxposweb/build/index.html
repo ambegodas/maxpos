@@ -33,7 +33,7 @@
     <!-- Bootstrap datepicker CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker.standalone.min.css">
-
+    <link rel="stylesheet" href="assets/css/override.css">
 
 
     <!-- compiled JavaScript -->
@@ -46,9 +46,11 @@
     <script type="text/javascript" src="src/app/about/about.js"></script>
     <script type="text/javascript" src="src/app/account/account.js"></script>
     <script type="text/javascript" src="src/app/app.js"></script>
+    <script type="text/javascript" src="src/app/core/directives/alertContainerDirective.js"></script>
     <script type="text/javascript" src="src/app/history/history.js"></script>
     <script type="text/javascript" src="src/app/home/home.js"></script>
     <script type="text/javascript" src="src/app/inventory/inventory.js"></script>
+    <script type="text/javascript" src="src/app/settings/settings.js"></script>
     <script type="text/javascript" src="src/common/plusOne/plusOne.js"></script>
     <script type="text/javascript" src="templates-common.js"></script>
     <script type="text/javascript" src="templates-app.js"></script>
@@ -117,7 +119,14 @@
           <button class="btn btn-danger navbar-btn navbar-right"  ng-click="logout()">Logout</button>
         </div>
       </div>
+
+      <div class="col-sm-6 col-sm-offset-3">
+        <mp-alert-container></mp-alert-container>
+      </div>
+
     </div>
+
+
 
     <div class="container" ui-view="main" style="height: 75%">
 
@@ -139,6 +148,12 @@
     <!-- Bootstrap datepicker JS -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 
+    <script type="text/ng-template" id="alertTemplate.html">
+      <div class="alert alert-success">
+        <button class="close" data-dismiss="alert" aria-label="close">&times;</button>
+        <strong>Success!</strong> Indicates a successful or positive action.
+      </div>
+    </script>
 
   </body>
 </html>

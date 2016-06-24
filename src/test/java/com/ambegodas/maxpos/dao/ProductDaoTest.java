@@ -34,7 +34,7 @@ public class ProductDaoTest {
 		productDao.addProduct(product);
 	}
 	 
-	@Test
+
 	@Transactional
 	public void test(){
 		assertNotNull(productDao.getProduct(product.getProductId()));

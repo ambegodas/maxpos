@@ -16,7 +16,9 @@
         >
         
 
-   <context:component-scan base-package="com.ambegodas.maxpos.daoimpl"></context:component-scan>
+    <context:component-scan base-package="com.ambegodas.maxpos.daoimpl"></context:component-scan>
+	<context:component-scan base-package="com.ambegodas.maxpos.service.impl"></context:component-scan>
+	<context:component-scan base-package="com.ambegodas.maxpos.security"></context:component-scan>
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="username" value="root"></property>
@@ -42,8 +44,16 @@
 		<property name="packagesToScan" value="com.ambegodas.maxpos.model"></property>
 	</bean>
         
-     <tx:annotation-driven/>    
-     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"></bean>
-     <context:component-scan base-package="com.ambegodas.maxpos.service.impl"></context:component-scan>
-	 <context:component-scan base-package="com.ambegodas.maxpos.security"></context:component-scan>
+     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+         <property name="entityManagerFactory" ref="entityManagerFactory"></property>
+	 </bean>
+
+	<!--bean id="transactionManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean -->
+
+
  </beans>

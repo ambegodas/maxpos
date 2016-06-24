@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'account/account.tpl.html', 'account/createAccount.tpl.html', 'account/login.tpl.html', 'history/history.tpl.html', 'home/home.tpl.html', 'inventory/inventory.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'account/account.tpl.html', 'account/createAccount.tpl.html', 'account/login.tpl.html', 'history/history.tpl.html', 'home/home.tpl.html', 'inventory/inventory.tpl.html', 'settings/settings.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -643,7 +643,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            <div class=\"panel panel-default panel-info\">\n" +
     "\n" +
     "                <div class=\"panel-body\">\n" +
-    "                <form action=\"\" class=\"form-horizontal\">\n" +
+    "                <form action=\"\" class=\"form-horizontal\" id=\"addProductForm\" name=\"addProductForm\" novalidate>\n" +
     "\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"barCode\" class=\"control-label col-sm-5\">Bar Code</label>\n" +
@@ -655,9 +655,10 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"productId\" class=\"control-label col-sm-5\">Product ID</label>\n" +
     "                        <div class=\"col-sm-6\">\n" +
-    "                            <input type=\"text\" id=\"productId\" class=\"form-control\" ng-model=\"unitSale.product.productId\">\n" +
+    "                            <input required type=\"text\" id=\"productId\" name=\"productId\" class=\"form-control\" ng-model=\"unitSale.product.productId\">\n" +
     "                        </div>\n" +
     "                    </div>\n" +
+    "\n" +
     "\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"productName\" class=\"control-label col-sm-5\">Product Name</label>\n" +
@@ -667,16 +668,16 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"form-group\">\n" +
-    "                        <label for=\"measuredIn\" class=\"control-label col-sm-5\">Measured In</label>\n" +
+    "                        <label for=\"qty\" class=\"control-label col-sm-5\">Qty</label>\n" +
     "                        <div class=\"col-sm-6\">\n" +
-    "                            <input type=\"text\" id=\"measuredIn\" class=\"form-control\" ng-model=\"unitSale.product.measuredIn\">\n" +
+    "                            <input type=\"text\" id=\"qty\" class=\"form-control\" ng-model=\"unitSale.qty\">\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"form-group\">\n" +
-    "                        <label for=\"qty\" class=\"control-label col-sm-5\">Qty</label>\n" +
+    "                        <label for=\"measuredIn\" class=\"control-label col-sm-5\">Measured In</label>\n" +
     "                        <div class=\"col-sm-6\">\n" +
-    "                            <input type=\"text\" id=\"qty\" class=\"form-control\" ng-model=\"unitSale.qty\">\n" +
+    "                            <input type=\"text\" id=\"measuredIn\" class=\"form-control\" ng-model=\"unitSale.product.measuredIn\" disabled=\"disabled\">\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
@@ -756,13 +757,15 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "                    </tr>\n" +
     "                    <tr style=\"width:100%\">\n" +
-    "                        <td width=\"25%\">To Pay</td>\n" +
-    "                        <td width=\"25%\">{{sale.finalTotal}}</td>\n" +
-    "                        <td width=\"25%\">\n" +
+    "                        <td width=\"20%\">To Pay</td>\n" +
+    "                        <td width=\"20%\">{{sale.finalTotal}}</td>\n" +
+    "                        <td width=\"20%\">\n" +
     "                            <button type=\"button\" class=\"btn btn-sm btn-info\" ng-click=\"pay()\">Pay\n" +
     "                            </button>\n" +
     "                        </td>\n" +
-    "                        <td width=\"25%\"><button type=\"button\" class=\"btn btn-sm btn-info\">Void\n" +
+    "                        <td width=\"20%\"><button type=\"button\" class=\"btn btn-sm btn-info\">Void\n" +
+    "                        </button></td>\n" +
+    "                        <td width=\"20%\"><button type=\"button\" class=\"btn btn-sm btn-info\">Reset\n" +
     "                        </button></td>\n" +
     "                    </tr>\n" +
     "                </table>\n" +
@@ -1031,4 +1034,18 @@ angular.module("inventory/inventory.tpl.html", []).run(["$templateCache", functi
     "        </div>\n" +
     "    </div>\n" +
     "</div>");
+}]);
+
+angular.module("settings/settings.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("settings/settings.tpl.html",
+    "<!DOCTYPE html>\n" +
+    "<html lang=\"en\">\n" +
+    "<head>\n" +
+    "    <meta charset=\"UTF-8\">\n" +
+    "    <title></title>\n" +
+    "</head>\n" +
+    "<body>\n" +
+    "\n" +
+    "</body>\n" +
+    "</html>");
 }]);

@@ -33,7 +33,7 @@
     <!-- Bootstrap datepicker CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker.standalone.min.css">
-
+    <link rel="stylesheet" href="assets/css/override.css">
 
 
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
@@ -103,7 +103,14 @@
           <button class="btn btn-danger navbar-btn navbar-right"  ng-click="logout()">Logout</button>
         </div>
       </div>
+
+      <div class="col-sm-6 col-sm-offset-3">
+        <mp-alert-container></mp-alert-container>
+      </div>
+
     </div>
+
+
 
     <div class="container" ui-view="main" style="height: 75%">
 
@@ -125,6 +132,12 @@
     <!-- Bootstrap datepicker JS -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 
+    <script type="text/ng-template" id="alertTemplate.html">
+      <div class="alert alert-success">
+        <button class="close" data-dismiss="alert" aria-label="close">&times;</button>
+        <strong>Success!</strong> Indicates a successful or positive action.
+      </div>
+    </script>
 
   </body>
 </html>

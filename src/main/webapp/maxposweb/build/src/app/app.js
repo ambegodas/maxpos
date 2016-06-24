@@ -6,7 +6,9 @@ angular.module( 'ngBoilerplate', [
   'maxpos.account',
   'maxpos.inventory',
   'ui.router',
-  'maxpos.history'
+  'maxpos.history',
+  'maxpos.settings',
+  'maxpos.core.directives'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {

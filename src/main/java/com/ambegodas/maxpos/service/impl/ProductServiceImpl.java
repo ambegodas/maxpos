@@ -4,6 +4,7 @@ import com.ambegodas.maxpos.dao.ProductDao;
 import com.ambegodas.maxpos.service.util.ProductList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ambegodas.maxpos.model.Product;
@@ -15,7 +16,7 @@ import java.util.List;
  * @author Pathmasri Ambegoda
  */
 @Service
-@Transactional
+@Transactional(propagation = Propagation.REQUIRES_NEW,readOnly = false)
 public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
