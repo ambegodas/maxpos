@@ -70,7 +70,7 @@ homeApp.factory('sale', function(){
 
 
 
-homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService,unitSales,sale) {
+homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService,unitSales,sale,$rootScope) {
 
 
     $scope.unitSales = unitSales;
@@ -80,6 +80,9 @@ homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService,un
 
      saleService.loadProductData(unitSale.product.productId, function(data){
        $scope.unitSale.product = data;
+         var message = {messageText:'Product is loaded',successMessage:false,errorMessage:true};
+         $rootScope.showMessage(message);
+
      },function(){
        alert("Error while loading product data");
      });

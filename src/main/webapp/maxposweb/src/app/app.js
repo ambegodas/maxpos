@@ -18,7 +18,7 @@ angular.module( 'ngBoilerplate', [
 .run( function run () {
 })
 
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location,$http,$window ) {
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location,$http,$window ,$rootScope) {
 
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
@@ -35,6 +35,16 @@ angular.module( 'ngBoilerplate', [
         });
 
       } ;
+
+      $rootScope.message ='';
+
+      $rootScope.showMessage = function(message){
+        $rootScope.message = message;
+      };
+
+      $rootScope.closeMessage = function(){
+        $rootScope.message ='';
+      };
 })
 
 ;

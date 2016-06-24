@@ -120,7 +120,7 @@
         </div>
       </div>
 
-      <div class="col-sm-6 col-sm-offset-3">
+      <div class="col-sm-6 col-sm-offset-3" ng-if="$root.message !=''">
         <mp-alert-container></mp-alert-container>
       </div>
 
@@ -149,9 +149,9 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 
     <script type="text/ng-template" id="alertTemplate.html">
-      <div class="alert alert-success">
-        <button class="close" data-dismiss="alert" aria-label="close">&times;</button>
-        <strong>Success!</strong> Indicates a successful or positive action.
+      <div ng-class="{ 'alert-success':message.successMessage,'alert-danger':message.errorMessage, 'alert':true}">
+        <button class="close" aria-label="close" ng-click="closeMessage()();">&times;</button>
+        <strong>{{$root.message.messageText}}</strong>
       </div>
     </script>
 
