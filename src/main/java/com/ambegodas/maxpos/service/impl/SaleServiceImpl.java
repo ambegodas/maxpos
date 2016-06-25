@@ -67,8 +67,9 @@ public class SaleServiceImpl implements SaleService{
         transactionAudit.setTnxTimestamp(new Date());
         transactionAudit.setAction("Sale");
         transactionAudit.setSaleId(sale.getSaleId());
-        transactionAudit.setTotal(sale.getPaidAmount());
+        transactionAudit.setTotal(sale.getFinalTotal());
 
         transactionAuditDao.addTransactionAudit(transactionAudit);
     }
+
 }

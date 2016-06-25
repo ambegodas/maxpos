@@ -19,7 +19,7 @@ public class TransactionAuditDaoImpl implements TransactionAuditDao {
 
     @Override
     public List<TransactionAudit> getTransactionAudits() {
-        String query = "Select a from TransactionAudit a";
+        String query = "Select a from TransactionAudit a ORDER BY a.tnxTimestamp DESC";
         List<TransactionAudit> transactionAudits = em.createQuery(query,TransactionAudit.class).getResultList();
         return transactionAudits;
     }

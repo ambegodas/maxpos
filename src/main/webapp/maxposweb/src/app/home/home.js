@@ -78,31 +78,57 @@ homeApp.controller( 'HomeCtrl', function HomeController( $scope , saleService,un
 
    $scope.loadProductData = function(unitSale){
 
-     saleService.loadProductData(unitSale.product.productId, function(data){
-       $scope.unitSale.product = data;
-         var message = {messageText:'Product is loaded',successMessage:false,errorMessage:true};
+     if(!$rootScope.isNullOrEmpty(unitSale) && !$rootScope.isNullOrEmpty(unitSale.product) && !$rootScope.isNullOrEmpty(unitSale.product.productId)){
+         saleService.loadProductData(unitSale.product.productId, function(data){
+             $scope.unitSale.product = data;
+
+         },function(){
+             alert("Error while loading product data");
+         });
+     } else {
+         var message = {messageText:'Please enter product ID',successMessage:false,errorMessage:true};
          $rootScope.showMessage(message);
-
-     },function(){
-       alert("Error while loading product data");
-     });
-
+     }
    };
 
 
     $scope.addUnitSale = function(unitSale){
 
-      $scope.unitSales.push(unitSale);
+        var message ="";
 
-        unitSale.unitTotal = unitSale.product.price * unitSale.qty;
-        $scope.sale.finalTotal = $scope.sale.finalTotal + unitSale.unitTotal;
-      /*
-       Setting the scope.unitSale to any empty object will not update the values in the table because the newly assigned object is
-       not added the collection bound to the table. This done in order to reset the input fields of the form.
-       If you update the same object using scope.unitSale.product, the table will get updated.
-       This is a dirty trick to reset the input fields of the form.
-       */
-        $scope.unitSale= {};
+        if(!$rootScope.isNullOrEmpty(unitSale) && !$rootScope.isNullOrEmpty(unitSale.product)){
+
+            if($rootScope.isNullOrEmpty(unitSale.product.productId)){
+                 message = {messageText:'Please load product data and try again.',successMessage:false,errorMessage:true};
+                $rootScope.showMessage(message);
+
+            } else if ($rootScope.isNullOrEmpty(unitSale.qty)){
+                 message = {messageText:'Please insert quantity.',successMessage:false,errorMessage:true};
+                $rootScope.showMessage(message);
+
+            } else {
+                $scope.unitSales.push(unitSale);
+
+                unitSale.unitTotal = unitSale.product.price * unitSale.qty;
+                $scope.sale.finalTotal = $scope.sale.finalTotal + unitSale.unitTotal;
+
+
+
+                /*
+                 Setting the scope.unitSale to any empty object will not update the values in the table because the newly assigned object is
+                 not added the collection bound to the table. This done in order to reset the input fields of the form.
+                 If you update the same object using scope.unitSale.product, the table will get updated.
+                 This is a dirty trick to reset the input fields of the form.
+                 */
+                $scope.unitSale= {};
+            }
+
+        } else {
+            message = {messageText:'Please load product data and try again.',successMessage:false,errorMessage:true};
+            $rootScope.showMessage(message);
+        }
+
+
     };
 
     $scope.removeUnitSale = function(unitSale){

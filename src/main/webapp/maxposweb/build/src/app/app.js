@@ -45,6 +45,16 @@ angular.module( 'ngBoilerplate', [
       $rootScope.closeMessage = function(){
         $rootScope.message ='';
       };
+
+
+        $rootScope.isNullOrEmpty = function (input){
+
+            if(input === undefined || input ==='' || input === null){
+                return true;
+            } else {
+                return false;
+            }
+        } ;
 })
 
 ;

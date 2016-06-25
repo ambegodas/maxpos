@@ -595,11 +595,11 @@ angular.module("history/history.tpl.html", []).run(["$templateCache", function($
     "            <table st-table=\"displayedTransactions\" st-safe-src=\"transactions\" class=\"table table-condensed\">\n" +
     "                <thead>\n" +
     "                <tr>\n" +
+    "                    <th>Transaction ID</th>\n" +
     "                    <th>Date</th>\n" +
     "                    <th>Username</th>\n" +
     "                    <th>Action</th>\n" +
     "                    <th>Total</th>\n" +
-    "                    <th>Content</th>\n" +
     "                </tr>\n" +
     "                <tr>\n" +
     "                    <th colspan=\"6\"><input st-search=\"\" class=\"form-control\" placeholder=\"Search...\" type=\"text\"/></th>\n" +
@@ -608,11 +608,11 @@ angular.module("history/history.tpl.html", []).run(["$templateCache", function($
     "                </thead>\n" +
     "                <tbody>\n" +
     "                <tr ng-repeat=\"transaction in displayedTransactions\">\n" +
-    "                    <td>{{transaction.tnxTimestamp | date}}</td>\n" +
+    "                    <td>{{transaction.transactionId}}</td>\n" +
+    "                    <td>{{transaction.tnxTimestamp | date:'medium'}}</td>\n" +
     "                    <td>{{transaction.userId}}</td>\n" +
     "                    <td>{{transaction.action}}</td>\n" +
     "                    <td>{{transaction.total}}</td>\n" +
-    "                    <td>{{transaction.content}}</td>\n" +
     "                    <td>\n" +
     "                        <button type=\"button\" ng-click=\"openUpdateAgentModal(account)\" class=\"btn btn-sm btn-info\" data-toggle=\"modal\" data-target=\"#modify-user-modal\" >\n" +
     "                            <i class=\"glyphicon glyphicon-edit\">\n" +
