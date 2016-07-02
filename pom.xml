@@ -110,7 +110,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-
+			<!-- JSON processing -->
 		<dependency>
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path</artifactId>
@@ -124,8 +124,6 @@
 			<scope>test</scope>
 		</dependency>
 
-
-		<!-- JSON processing -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>

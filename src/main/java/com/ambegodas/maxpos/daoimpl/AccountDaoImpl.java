@@ -2,6 +2,9 @@ package com.ambegodas.maxpos.daoimpl;
 
 import com.ambegodas.maxpos.dao.AccountDao;
 import com.ambegodas.maxpos.model.Account;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +22,9 @@ public class AccountDaoImpl implements AccountDao {
 
     @PersistenceContext
     private EntityManager em;
+
+  //  @Autowired
+  //  private SessionFactory sessionFactory;
 
     public Account getAccount(String username) {
 
@@ -56,5 +62,18 @@ public class AccountDaoImpl implements AccountDao {
         List<Account> accounts = em.createQuery(query,Account.class).getResultList();
         return accounts;
     }
+
+ //   public List<Account> getAccounts(){
+//
+  //      Session session = this.sessionFactory.openSession();
+  //      List<Account> accountsList = session.createQuery("from Account").list();
+  //      session.close();
+  //      return accountsList;
+
+  //  }
+
+
+
+
 
 }
